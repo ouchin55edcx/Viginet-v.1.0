@@ -1,0 +1,21 @@
+
+   Error 
+
+  Undefined constant "ExpertController"
+
+  at C:\Users\ahmed\fil-rouge\routes\web.php:33
+     29▕ Route::resource('login', LoginController::class)->only(['index', 'store']);
+     30▕ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+     31▕ 
+     32▕ 
+  ➜  33▕ Route::get('dashboard', ExpertController)->name('expert.dashboard');
+     34▕ 
+     35▕ Route::get('/superadmin/dashboard', function () {
+     36▕     return 'SuperAdmin Dashboard';
+     37▕ })->name('superadmin.dashboard');
+
+  1   C:\Users\ahmed\fil-rouge\vendor\laravel\framework\src\Illuminate\Routing\RouteFileRegistrar.php:35
+      require()
+
+  2   C:\Users\ahmed\fil-rouge\vendor\laravel\framework\src\Illuminate\Routing\Router.php:503
+      Illuminate\Routing\RouteFileRegistrar::register("C:\Users\ahmed\fil-rouge\routes/web.php")
