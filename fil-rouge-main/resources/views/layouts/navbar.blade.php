@@ -81,7 +81,7 @@
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 @method('POST')
-                <button type="submit" class="hidden lg:inline-block py-2 px-6 lg:ml-3 border-2 border-yellow-500 hover:bg-yellow-600 hover:text-white text-sm text-black font-bold rounded-xl transition duration-200 cursor-pointer">
+                <button type="submit" class="hidden lg:inline-block py-2 px-6 lg:ml-3 border-2 border-yellow-500 hover:bg-yellow-600 hover:text-white text-sm text-white  font-bold rounded-xl transition duration-200 cursor-pointer">
                     Logout
                 </button>
             </form>
@@ -136,13 +136,13 @@
             <div class="mt-auto">
                 <div class="pt-6">
                     @guest
-                    <a class="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-xl"
-                        href="#">Login</a>
+                    <a class="block px-4 py-3 mb-3  leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-xl"
+                        href="{{route('login.index')}}">Login</a>
                     <a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-yellow-500 hover:bg-yellow-600  rounded-xl"
-                        href="#">Sign Up</a>
+                        href="{{route('register.index')}}">Sign Up</a>
                     @endguest
                     <a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-black font-semibold border-2 border-yellow-500 hover:bg-yellow-600  rounded-xl"
-                        href="#">Search</a>
+                        href="{{route('search.index')}}">Search</a>
 
                     @auth
                         <form  method="POST" action="#">

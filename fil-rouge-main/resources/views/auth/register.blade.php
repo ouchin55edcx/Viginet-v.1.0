@@ -17,7 +17,7 @@
 
     <section class="">
         <div class="m-16 w-[72vw] mx-auto ">
-            <form method="POST" action="{{ route('register.store') }}">
+            <form method="POST" action="{{ route('register.store') }}" id="registrationForm">
                 @csrf
                 <div class="mb-4">
                     <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
@@ -45,9 +45,10 @@
                     </select>
                 </div>
                 <div id="client-fields" class="hidden">
+                    <!-- Client-specific fields -->
                     <div class="mb-4">
                         <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
-                        <input type="text" id="phone_number" name="phone_number" class="mt-1 block w-full h-10 border-2rounded-full rounded-full shadow-sm hover:border-blue-500">
+                        <input type="text" id="phone_number" name="phone_number" class="mt-1 block w-full h-10 border-2 rounded-full shadow-sm hover:border-blue-500">
                     </div>
                     <div class="mb-4">
                         <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
@@ -55,6 +56,7 @@
                     </div>
                 </div>
                 <div id="expert-fields" class="hidden">
+                    <!-- Expert-specific fields -->
                     <div class="mb-4">
                         <label for="certificate" class="block text-sm font-medium text-gray-700">Certificate</label>
                         <input type="text" id="certificate" name="certificate" class="mt-1 block w-full h-10 border-2 rounded-full shadow-sm hover:border-blue-500">
@@ -76,7 +78,7 @@
             <div class="border-t-2 border-gray-300 w-full"></div>
         </div>
 
-        <div class=" flex gap-12 mx-16 my-8">
+        <div class=" flex gap-12 mx-[13rem] my-8">
             <a href="{{ route('google.redirect') }}">
                 <button class="flex items-center bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                     <svg class="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -106,28 +108,11 @@
             </a>
         </div>
 
-        <div class="flex justify-between m-16">
+        <div class="flex justify-between mx-[13rem] m-4">
             <h3 class="text-center">Already have an account?<span class="text-blue-400 "><a href="{{route('login.index')}}"> Log in
         </div>
     </section>
 
-    <script>
-        const roleSelect = document.getElementById('role');
-        const clientFields = document.getElementById('client-fields');
-        const expertFields = document.getElementById('expert-fields');
-
-        roleSelect.addEventListener('change', () => {
-            if (roleSelect.value === 'Client') {
-                clientFields.classList.remove('hidden');
-                expertFields.classList.add('hidden');
-            } else if (roleSelect.value === 'Expert') {
-                clientFields.classList.add('hidden');
-                expertFields.classList.remove('hidden');
-            } else {
-                clientFields.classList.add('hidden');
-                expertFields.classList.add('hidden');
-            }
-        });
-    </script>
+    <script src="js/register.js"></script>
 
 @endsection
