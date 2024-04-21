@@ -52,34 +52,33 @@ Route::resource('/courses/category', CorseController::class)->only('index');
 Route::resource('/courses/course/course_list', CoursesListController::class)->only('index');
 //Route::resource('/courses/course/course_details', CourseDetailsController::class)->only('index');
 Route::get('/courses/course/{lessonId}/course_details', [CourseDetailsController::class, 'index'])->name('course_details.index');
-// dashborad admin routes
-Route::resource('/admin', AdminController::class)->only('index');
 
-Route::resource('/admin/category/categoriesManager', CategoryManagerController::class)->only('index','store','edit','update','destroy');
+// Routes for AdminController
+Route::middleware('role:Admin')->prefix('admin')->group(function () {
+    Route::resource('/', AdminController::class)->only('index');
+    Route::resource('/admin/category/categoriesManager', CategoryManagerController::class)->only('index','store','edit','update','destroy');
 
-Route::resource('/admin/course/coursesManager', CorseManagerController::class)->only('index','store','edit','update','destroy');
+    Route::resource('/admin/course/coursesManager', CorseManagerController::class)->only('index','store','edit','update','destroy');
 
-Route::resource('/admin/course/addTask', \App\Http\Controllers\Admin\course\AddTaskController::class)->only('index', 'store', 'edit', 'update', 'destroy');
-Route::resource('/admin/course/addCourse', \App\Http\Controllers\Admin\course\AddCourseController::class)->only('index', 'store', 'edit', 'update', 'destroy');
+    Route::resource('/admin/course/addTask', \App\Http\Controllers\Admin\course\AddTaskController::class)->only('index', 'store', 'edit', 'update', 'destroy');
+    Route::resource('/admin/course/addCourse', \App\Http\Controllers\Admin\course\AddCourseController::class)->only('index', 'store', 'edit', 'update', 'destroy');
 
-//dashboard expert
-Route::resource('/expert', ExpertController::class)->only('index');
-Route::post('/expert/approve', [ExpertController::class, 'approve'])->name('expert.approve');
+    Route::post('/admin/course/addTask', [\App\Http\Controllers\Admin\course\AddTaskController::class, 'store'])->name('admin.course.addTask.store');
+    Route::post('/admin/course/addCourse', [\App\Http\Controllers\Admin\course\AddCourseController::class, 'store'])->name('admin.course.addCourse.store');
+});
 
+// Routes for ExpertController
+Route::middleware('role:Expert')->prefix('expert')->group(function () {
+    Route::resource('/', ExpertController::class)->only('index');
+    Route::post('/expert/approve', [ExpertController::class, 'approve'])->name('expert.approve');
+});
 
-
-
-Route::post('/admin/course/addTask', [\App\Http\Controllers\Admin\course\AddTaskController::class, 'store'])->name('admin.course.addTask.store');
-Route::post('/admin/course/addCourse', [\App\Http\Controllers\Admin\course\AddCourseController::class, 'store'])->name('admin.course.addCourse.store');
-// complaint
-Route::resource('/complaint', ComplaintController::class)->only('index','store');
 
 //community
 Route::resource('/community', CommunityController::class)->only('index','store');
 Route::resource('/posts', \App\Http\Controllers\Community\PostController::class)->only(['store', 'update','destroy']);
 Route::resource('/asks', \App\Http\Controllers\Community\AskController::class)->only('index','store','update','destroy');
 Route::resource('/askanswers', \App\Http\Controllers\Community\AskAnswerController::class)->only('index','store');
-Route::resource('search', \App\Http\Controllers\search\SearchController::class)->only(['index', 'show']);
 
 Route::resource('comments', \App\Http\Controllers\Community\CommentController::class)->only([
     'store'
@@ -90,16 +89,33 @@ Route::get('/askanswers/{ask_id}', [\App\Http\Controllers\Community\AskAnswerCon
 
 Route::put('/posts/{id}', [\App\Http\Controllers\Community\PostController::class, 'update'])->name('posts.update');
 
-// routes/web.php
-Route::get('/postSearch', [\App\Http\Controllers\Community\PostController::class, 'postSearch'])->name('posts.search');
 
 Route::post('/posts/{post}/like', [\App\Http\Controllers\Community\PostController::class, 'like'])->name('posts.like');
 Route::post('/posts/{post}/save', [\App\Http\Controllers\Community\PostController::class, 'save'])->name('posts.like');
-Route::resource('/client', ClientController::class)->only(['index', 'show', 'update']);
-Route::put('/client/{client}/update-image', [ClientController::class, 'updateImage'])->name('client.updateImage');
+Route::get('/postSearch', [\App\Http\Controllers\Community\PostController::class, 'postSearch'])->name('posts.search');
+
+
+// Routes for ClientController
+Route::middleware('role:Client')->group(function () {
+    Route::resource('/client', ClientController::class)->only(['index', 'show', 'update']);
+
+    Route::put('/client/{client}/update-image', [ClientController::class, 'updateImage'])->name('client.updateImage');
+
+    Route::resource('/complaint', ComplaintController::class)->only('index','store');
+
+    Route::resource('search', \App\Http\Controllers\search\SearchController::class)->only(['index', 'show']);
+
+});
+
+
 
 
 
 
 //score
 Route::post('/submit/answer', [\App\Http\Controllers\ScoreController::class, 'submitAnswer'])->name('submit.answer');
+
+
+// attent page
+
+Route::get('/acceptance', [\App\Http\Controllers\Auth\AcceptanceController::class, 'index'])->name('acceptance');

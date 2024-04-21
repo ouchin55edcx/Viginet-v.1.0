@@ -13,6 +13,7 @@ class Expert extends Model
         'user_id',
         'certificate',
         'experience',
+        'status'
     ];
 
     public function user()

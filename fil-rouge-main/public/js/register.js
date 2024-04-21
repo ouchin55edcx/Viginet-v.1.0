@@ -30,7 +30,6 @@ form.addEventListener('submit', function(event) {
     const passwordInput = document.getElementById('password');
     const confirmPasswordInput = document.getElementById('password_confirmation');
     const roleSelect = document.getElementById('role');
-    const phoneNumberInput = document.getElementById('phone_number');
     const addressInput = document.getElementById('address');
     const certificateInput = document.getElementById('certificate');
     const experienceInput = document.getElementById('experience');
@@ -40,7 +39,6 @@ form.addEventListener('submit', function(event) {
     const password = passwordInput.value;
     const confirmPassword = confirmPasswordInput.value;
     const role = roleSelect.value;
-    const phoneNumber = phoneNumberInput.value.trim();
     const address = addressInput.value.trim();
     const certificate = certificateInput.value.trim();
     const experience = experienceInput.value.trim();
@@ -71,10 +69,6 @@ form.addEventListener('submit', function(event) {
         const phoneNumber = phoneNumberInput.value.trim();
         const address = addressInput.value.trim();
 
-        if (!isValidPhoneNumber(phoneNumber)) {
-            alert('Please enter a valid phone number');
-            return;
-        }
 
         if (!address) {
             alert('Please enter your address');
@@ -105,10 +99,6 @@ function isValidEmail(email) {
     return regex.test(email);
 }
 
-function isValidPhoneNumber(phoneNumber) {
-    const regex = /^[1-10]{10}$/; // Modify as per your phone number format
-    return regex.test(phoneNumber);
-}
 });
 
 

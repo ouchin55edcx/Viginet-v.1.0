@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Log;
+
 
 class RegisterController extends Controller
 {
@@ -36,44 +38,55 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'username' => 'required|string|max:255|unique:users',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:Client,Expert,SuperAdmin',
-        ]);
-
-        $validatedData['password'] = Hash::make($validatedData['password']);
-
-        $user = User::create($validatedData);
-
-        if ($validatedData['role'] === 'Client') {
-            $request->validate([
-                'phone_number' => 'required|string',
-                'address' => 'required|string',
+        try {
+            // Validate the request data
+            $validatedData = $request->validate([
+                'username' => 'required|string|max:255|unique:users',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|min:8|confirmed',
+                'role' => 'required|in:Client,Expert,SuperAdmin',
             ]);
 
-            $user->client()->create([
-                'phone_number' => $request->phone_number,
-                'address' => $request->address,
-            ]);
+
+            // Hash the password before creating the user
+            $validatedData['password'] = Hash::make($validatedData['password']);
+
+            // Create the user with validated data
+            $user = User::create($validatedData);
+
+            if ($validatedData['role'] === 'Client') {
+                $request->validate([
+                    'phone_number' => 'required|string',
+                    'address' => 'required|string',
+                ]);
+
+                $user->client()->create([
+                    'phone_number' => $request->phone_number,
+                    'address' => $request->address,
+                ]);
+
+                return redirect($this->redirectTo);
+            } elseif ($validatedData['role'] === 'Expert') {
+                $request->validate([
+                    'certificate' => 'required|string',
+                    'experience' => 'required|string',
+                ]);
+
+                $user->expert()->create([
+                    'certificate' => $request->certificate,
+                    'experience' => $request->experience,
+                ]);
+
+                return redirect($this->redirectTo);
+            }
 
             return redirect($this->redirectTo);
-        } elseif ($validatedData['role'] === 'Expert') {
-            $request->validate([
-                'certificate' => 'required|string',
-                'experience' => 'required|string',
-            ]);
-
-            $user->expert()->create([
-                'certificate' => $request->certificate,
-                'experience' => $request->experience,
-            ]);
-
-            return redirect($this->redirectTo);
+        } catch (\Exception $e) {
+            // Log the error
+            log::error('User registration failed: ' . $e->getMessage());
+            // Redirect back with error message
+            return redirect()->back()->withErrors(['error' => 'An error occurred during registration. Please try again later.']);
         }
-
-        // For SuperAdmin or any other roles, you can provide a default redirect
-        return redirect($this->redirectTo);
     }
 }
+
