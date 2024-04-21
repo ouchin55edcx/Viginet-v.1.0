@@ -161,6 +161,6 @@
 
         </nav>
     </div>
-    <script src="js/navbar.js"></script>
 
    @yield('content')
+    <script src="/js/navbar.js"></script>

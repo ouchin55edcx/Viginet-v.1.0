@@ -478,10 +478,13 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="logout">
-                    <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
-                </a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    @method('POST')
+                    <button type="submit" class="hidden lg:inline-block py-2 px-6 lg:ml-3 border-2 border-yellow-500 hover:bg-yellow-600 hover:text-white text-sm text-white  font-bold rounded-xl transition duration-200 cursor-pointer">
+                        Logout
+                    </button>
+                </form>
             </li>
         </ul>
     </section>

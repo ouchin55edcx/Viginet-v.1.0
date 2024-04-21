@@ -54,8 +54,8 @@ Route::resource('/courses/course/course_list', CoursesListController::class)->on
 Route::get('/courses/course/{lessonId}/course_details', [CourseDetailsController::class, 'index'])->name('course_details.index');
 
 // Routes for AdminController
-Route::middleware('role:Admin')->prefix('admin')->group(function () {
-    Route::resource('/', AdminController::class)->only('index');
+Route::middleware('role:SuperAdmin')->group(function () {
+    Route::resource('/admin', AdminController::class)->only('index');
     Route::resource('/admin/category/categoriesManager', CategoryManagerController::class)->only('index','store','edit','update','destroy');
 
     Route::resource('/admin/course/coursesManager', CorseManagerController::class)->only('index','store','edit','update','destroy');
@@ -74,27 +74,6 @@ Route::middleware('role:Expert')->prefix('expert')->group(function () {
 });
 
 
-//community
-Route::resource('/community', CommunityController::class)->only('index','store');
-Route::resource('/posts', \App\Http\Controllers\Community\PostController::class)->only(['store', 'update','destroy']);
-Route::resource('/asks', \App\Http\Controllers\Community\AskController::class)->only('index','store','update','destroy');
-Route::resource('/askanswers', \App\Http\Controllers\Community\AskAnswerController::class)->only('index','store');
-
-Route::resource('comments', \App\Http\Controllers\Community\CommentController::class)->only([
-    'store'
-])->parameters([
-    'comments' => 'postId'
-]);
-Route::get('/askanswers/{ask_id}', [\App\Http\Controllers\Community\AskAnswerController::class,'index'])->name('askanswers.index');
-
-Route::put('/posts/{id}', [\App\Http\Controllers\Community\PostController::class, 'update'])->name('posts.update');
-
-
-Route::post('/posts/{post}/like', [\App\Http\Controllers\Community\PostController::class, 'like'])->name('posts.like');
-Route::post('/posts/{post}/save', [\App\Http\Controllers\Community\PostController::class, 'save'])->name('posts.like');
-Route::get('/postSearch', [\App\Http\Controllers\Community\PostController::class, 'postSearch'])->name('posts.search');
-
-
 // Routes for ClientController
 Route::middleware('role:Client')->group(function () {
     Route::resource('/client', ClientController::class)->only(['index', 'show', 'update']);
@@ -108,9 +87,26 @@ Route::middleware('role:Client')->group(function () {
 });
 
 
+//community
+Route::resource('/community', CommunityController::class)->only('index','store');
+Route::resource('/posts', \App\Http\Controllers\Community\PostController::class)->only(['store', 'update','destroy']);
+Route::resource('/asks', \App\Http\Controllers\Community\AskController::class)->only('index','store','update','destroy');
+Route::resource('/askanswers', \App\Http\Controllers\Community\AskAnswerController::class)->only('index','store');
+
+Route::resource('comments', \App\Http\Controllers\Community\CommentController::class)->only([
+    'store'
+])->parameters([
+    'comments' => 'postId'
+]);
+
+Route::get('/askanswers/{ask_id}', [\App\Http\Controllers\Community\AskAnswerController::class,'index'])->name('askanswers.index');
+
+Route::put('/posts/{id}', [\App\Http\Controllers\Community\PostController::class, 'update'])->name('posts.update');
 
 
-
+Route::post('/posts/{post}/like', [\App\Http\Controllers\Community\PostController::class, 'like'])->name('posts.like');
+Route::post('/posts/{post}/save', [\App\Http\Controllers\Community\PostController::class, 'save'])->name('posts.like');
+Route::get('/postSearch', [\App\Http\Controllers\Community\PostController::class, 'postSearch'])->name('posts.search');
 
 //score
 Route::post('/submit/answer', [\App\Http\Controllers\ScoreController::class, 'submitAnswer'])->name('submit.answer');

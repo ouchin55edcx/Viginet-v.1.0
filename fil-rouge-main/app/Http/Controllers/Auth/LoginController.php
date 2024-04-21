@@ -20,9 +20,9 @@ class LoginController extends Controller
             'login' => 'required|string',
             'password' => 'required|string',
         ]);
-    
+
         $field = filter_var($credentials['login'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-    
+
         if (Auth::attempt([$field => $credentials['login'], 'password' => $credentials['password']])) {
             $user = Auth::user();
             switch ($user->role) {
@@ -40,7 +40,8 @@ class LoginController extends Controller
                     break;
             }
         }
-    
+
+
         return back()->withErrors([
             'login' => 'The provided credentials do not match our records.',
         ]);

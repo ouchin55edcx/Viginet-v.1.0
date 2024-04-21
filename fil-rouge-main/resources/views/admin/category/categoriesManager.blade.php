@@ -2,7 +2,7 @@
 
 @section('content')
     <div>
-        
+
         {{-- display category table  --}}
         <div class="mt-12">
             <div class="container mx-auto px-4">
@@ -129,6 +129,8 @@
             <div class="flex items-center justify-center min-h-screen">
                 <div class="bg-white rounded-lg p-6 max-w-md">
                     <h2 class="text-xl font-bold mb-4">Edit Category</h2>
+                    @if (isset($category))
+
                     <form method="POST" action="{{ route('categoriesManager.update', $category->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -160,12 +162,13 @@
                             </button>
                         </div>
                     </form>
+                    @endif
                 </div>
             </div>
         </div>
 
     </div>
-    
+
     <script>
         function openEditModal(categoryId, name, description) {
             document.getElementById('editCategoryId').value = categoryId;
@@ -173,7 +176,7 @@
             document.getElementById('editDescription').value = description;
             document.getElementById('editModal').classList.remove('hidden');
         }
-    
+
         function closeEditModal() {
             document.getElementById('editModal').classList.add('hidden');
         }
