@@ -4,8 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="stylesheet" href="/build/tailwind.css">
     <link rel="icon" href="/storage/images/logo.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -34,9 +32,9 @@
     </style>
 </head>
 
-<body class="antialiased bg-gray-200">
+<body class="antialiased bg-gray-200 overflow-x-hidden ">
     <!-- component -->
-    <nav class="relative top-0 w-full px-4 py-4 flex justify-between items-center bg-white shadow-md z-50">
+    <nav class="fixed top-0 w-full px-4 py-4 flex justify-between items-center  bg-[#111b29] z-50">
         <a class="text-3xl font-bold leading-none" href="/">
             <img src="/storage/images/logo.png" alt="" class="w-10">
         </a>
@@ -91,7 +89,7 @@
           </div>
     </nav>
 
-    <div class="navbar-menu relative z-40 hidden">
+    <div class="navbar-menu relative z-[80] hidden">
         <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
         <nav
             class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
@@ -163,48 +161,6 @@
 
         </nav>
     </div>
-
-    <script>
-        // Burger menus
-        document.addEventListener('DOMContentLoaded', function() {
-            // open
-            const burger = document.querySelectorAll('.navbar-burger');
-            const menu = document.querySelectorAll('.navbar-menu');
-
-            if (burger.length && menu.length) {
-                for (var i = 0; i < burger.length; i++) {
-                    burger[i].addEventListener('click', function() {
-                        for (var j = 0; j < menu.length; j++) {
-                            menu[j].classList.toggle('hidden');
-                        }
-                    });
-                }
-            }
-
-            // close
-            const close = document.querySelectorAll('.navbar-close');
-            const backdrop = document.querySelectorAll('.navbar-backdrop');
-
-            if (close.length) {
-                for (var i = 0; i < close.length; i++) {
-                    close[i].addEventListener('click', function() {
-                        for (var j = 0; j < menu.length; j++) {
-                            menu[j].classList.toggle('hidden');
-                        }
-                    });
-                }
-            }
-
-            if (backdrop.length) {
-                for (var i = 0; i < backdrop.length; i++) {
-                    backdrop[i].addEventListener('click', function() {
-                        for (var j = 0; j < menu.length; j++) {
-                            menu[j].classList.toggle('hidden');
-                        }
-                    });
-                }
-            }
-        });
-    </script>
+    <script src="js/navbar.js"></script>
 
    @yield('content')
