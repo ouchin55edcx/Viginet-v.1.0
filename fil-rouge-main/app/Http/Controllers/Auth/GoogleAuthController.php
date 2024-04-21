@@ -31,10 +31,10 @@ class GoogleAuthController extends Controller
             $newUser = User::create([
                 'username' => $user->name,
                 'email' => $user->email,
-                'password' => Hash::make(Str::random(16)), // Corrected assignment
-                'role' => 'Client', // Set the default role for Google registered users
+                'password' => Hash::make(Str::random(16)),
+                'role' => 'Client',
             ]);
-            
+
 
             Auth::login($newUser);
         }

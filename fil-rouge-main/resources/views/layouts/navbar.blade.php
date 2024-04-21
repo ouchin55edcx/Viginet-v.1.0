@@ -32,7 +32,7 @@
     </style>
 </head>
 
-<body class="antialiased bg-gray-200 overflow-x-hidden ">
+<body class="antialiased bg-gray-100 overflow-x-hidden ">
     <!-- component -->
     <nav class="fixed top-0 w-full px-4 py-4 flex justify-between items-center  bg-[#111b29] z-50">
         <a class="text-3xl font-bold leading-none" href="/">
