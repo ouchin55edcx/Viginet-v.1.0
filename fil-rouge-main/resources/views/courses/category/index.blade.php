@@ -17,7 +17,7 @@
         </div>
     </section>
     <div class="bg-[#212c42] flex gap-4">
-        <a href="#" class="ml-12 m-2 text-white text-xl px-4 py-2 rounded-md border-b-2 border-transparent border-green-500 outline-none">Learn</a>
+        <a href="#" class="ml-12 m-2 text-white text-xl px-4 py-2 rounded-md border-b-2 border-transparent hover:border-green-500 focus:border-green-500 focus:outline-none">Learn</a>
         <a href="{{ route('search.index') }}" id="searchLink" class="m-2 text-white text-xl px-4 py-2 rounded-md border-b-2 border-transparent hover:border-green-500 focus:border-green-500 focus:outline-none">Search</a>
     </div>
 

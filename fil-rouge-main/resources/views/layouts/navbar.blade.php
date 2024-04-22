@@ -12,6 +12,9 @@
     <script src="https://premium-tailwindcomponents.netlify.app/assets/build/js/main.js?id=8c11b7cf78ebea1b5aed"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+    <!-- sweet alert -->
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <title>VigiNet</title>
 
@@ -101,7 +104,7 @@
                 @endauth
                 @guest
                 <a class="mr-auto text-3xl font-bold leading-none" href="/">
-                    <img src="storage/images/logo.png" alt="" class="w-10">
+                    <img src="/storage/images/logo.png" alt="" class="w-10">
                 </a>
                 @endguest
                 <button class="navbar-close">

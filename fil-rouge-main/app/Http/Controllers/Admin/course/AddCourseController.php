@@ -28,7 +28,7 @@ class AddCourseController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
-            'image' => 'required|file|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'required|file|mimes:jpeg,png,jpg,svg',
             'category' => 'required|exists:categories,id', // Validate the category ID
         ]);
 
