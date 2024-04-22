@@ -80,12 +80,12 @@ Route::middleware('role:Client')->group(function () {
 
     Route::put('/client/{client}/update-image', [ClientController::class, 'updateImage'])->name('client.updateImage');
 
-    Route::resource('/complaint', ComplaintController::class)->only('index','store');
 
     Route::resource('search', \App\Http\Controllers\search\SearchController::class)->only(['index', 'show']);
 
 });
 
+Route::resource('/complaint', ComplaintController::class)->only('index','store');
 
 //community
 Route::resource('/community', CommunityController::class)->only('index','store');
