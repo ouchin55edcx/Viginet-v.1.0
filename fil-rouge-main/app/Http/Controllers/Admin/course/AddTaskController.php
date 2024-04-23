@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\course;
 
 use App\Http\Controllers\Controller;
+use App\Models\Answer;
 use App\Models\Choice;
 use App\Models\Image;
 use App\Models\Lesson;
@@ -32,6 +33,7 @@ class AddTaskController extends Controller
 
         ]);
 
+
 //        dd($validatedData);
 
         $imagePath = $this->storeImage($request->file('image'));
@@ -50,10 +52,10 @@ class AddTaskController extends Controller
         $correctChoice = $validatedData['correct-choice'];
 
         foreach ($options as $option) {
-            Choice::create([
-                'choice_text' => $option,
-                'is_correct' => $option === $correctChoice,
-                'task_id' => $task->id, // Update the foreign key name
+            Answer::create([
+                'choiceText' => $option,
+                'isCorrect' => $option === $correctChoice,
+                'task_id' => $task->id,
             ]);
         }
         Image::create([
@@ -61,9 +63,6 @@ class AddTaskController extends Controller
             'imageable_id' => $task->id,
             'imageable_type' => Task::class,
         ]);
-
-
-
 
         // Redirect or return a response as needed
         return redirect()->back()->with('success', 'Task created successfully.');
