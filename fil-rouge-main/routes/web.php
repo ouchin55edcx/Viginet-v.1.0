@@ -43,15 +43,6 @@ Route::get('/auth/google', [GoogleAuthController::class, 'redirectToGoogle'])->n
 Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback'])->name('google.callback');
 
 
-// category routes
-Route::resource('/courses/category', CorseController::class)->only('index');
-
-
-
-// courses list  routes
-Route::resource('/courses/course/course_list', CoursesListController::class)->only('index');
-//Route::resource('/courses/course/course_details', CourseDetailsController::class)->only('index');
-Route::get('/courses/course/{lessonId}/course_details', [CourseDetailsController::class, 'index'])->name('course_details.index');
 
 // Routes for AdminController
 Route::middleware('role:SuperAdmin')->group(function () {
@@ -83,6 +74,17 @@ Route::middleware('role:Client')->group(function () {
 
     Route::resource('search', \App\Http\Controllers\search\SearchController::class)->only(['index', 'show']);
 
+    // category routes
+    Route::resource('/courses/category', CorseController::class)->only('index');
+
+    // courses list  routes
+    Route::resource('/courses/course/course_list', CoursesListController::class)->only('index');
+
+    //Route::resource('/courses/course/course_details', CourseDetailsController::class)->only('index');
+    Route::get('/courses/course/{lessonId}/course_details', [CourseDetailsController::class, 'index'])->name('course_details.index');
+
+    Route::post('/submit-answer', [CourseDetailsController::class,'submitAnswer'])->name('submit.answer');
+
 });
 
 Route::resource('/complaint', ComplaintController::class)->only('index','store');
@@ -107,9 +109,6 @@ Route::put('/posts/{id}', [\App\Http\Controllers\Community\PostController::class
 Route::post('/posts/{post}/like', [\App\Http\Controllers\Community\PostController::class, 'like'])->name('posts.like');
 Route::post('/posts/{post}/save', [\App\Http\Controllers\Community\PostController::class, 'save'])->name('posts.like');
 Route::get('/postSearch', [\App\Http\Controllers\Community\PostController::class, 'postSearch'])->name('posts.search');
-
-//score
-Route::post('/submit/answer', [\App\Http\Controllers\ScoreController::class, 'submitAnswer'])->name('submit.answer');
 
 
 // attent page

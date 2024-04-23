@@ -1,7 +1,6 @@
 @extends('layouts.navbar')
 
 @section('content')
-
     <section class="relative py-20 bg-cover bg-center md:h-[50vh]"
              style="background-image: url('{{ asset('storage/' . $thisLesson->image->path) }}');">
         <div class="absolute inset-0 bg-gradient-to-b from-gray-900 to-black opacity-90"></div>
@@ -118,41 +117,45 @@
                                 <ul class="flex flex-col gap-4 ml-16">
                                     @auth
                                         <!-- User is authenticated -->
-                                        @foreach ($task->choices as $choice)
-                                            @php
-                                                $isCorrect = $choice->is_correct ? '1' : '0';
-                                                $taskId = $task->id;
-                                            @endphp
+                                        <div class="flex flex-col gap-4 my-8">
+                                            <p class="ml-8 text-gray-800 text-lg font-semibold">{{ $task->question }}</p>
+                                            <ul class="flex flex-col gap-4 ml-16">
+                                                @foreach ($task->answer as $choice)
+                                                    <li>
+                                                        <form action="{{ route('submit.answer') }}" method="POST" onsubmit="return validateAnswer({{ $choice->isCorrect }});">
+                                                            @csrf
+                                                            <input type="hidden" name="choiceId" value="{{ $choice->id }}">
+                                                            <input type="hidden" name="taskId" value="{{ $task->id }}">
+                                                            <button type="submit" class="answer-button w-full px-6 py-3 rounded-md focus:outline-none border-2 border-blue-500 shadow-md bg-white text-blue-500 font-semibold transition-colors duration-300 hover:bg-blue-500 hover:text-white">
+                                                                {{ $choice->choiceText }}
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
 
-                                            <li>
-                                                <button
-                                                    class="answer-button w-full px-6 py-3 rounded-md focus:outline-none border-2 border-blue-500 shadow-md bg-white text-blue-500 font-semibold transition-colors duration-300 hover:bg-blue-500 hover:text-white"
-                                                    data-is-correct="{{ $isCorrect }}"
-                                                    data-task-id="{{ $taskId }}"
-                                                    data-answer="{{ $isCorrect }}"
-                                                    @if ($task->is_complete)
-                                                        disabled
-                                                    @endif
-                                                >
-                                                    {{ $choice->choice_text }}
-                                                </button>
-                                            </li>
-                                        @endforeach
+                                        <script>
+                                            function validateAnswer(isCorrect) {
+                                                if (isCorrect === 0) {
+                                                    alert('This answer is incorrect!');
+                                                    return false; // Prevent form submission
+                                                }
+                                                return true; // Allow form submission
+                                            }
+                                        </script>
+
                                     @else
                                         <!-- User is not authenticated -->
                                         <li>
                                             <form action="{{ route('login.index') }}" method="GET">
-                                                <button
-                                                    type="submit"
-                                                    class="w-full px-6 py-3 rounded-md focus:outline-none border-2 border-blue-500 shadow-md bg-white text-blue-500 font-semibold transition-colors duration-300 hover:bg-blue-500 hover:text-white"
-                                                >
+                                                <button type="submit" class="w-full px-6 py-3 rounded-md focus:outline-none border-2 border-blue-500 shadow-md bg-white text-blue-500 font-semibold transition-colors duration-300 hover:bg-blue-500 hover:text-white">
                                                     Log in to answer
                                                 </button>
                                             </form>
                                         </li>
                                     @endauth
                                 </ul>
-
                             </div>
                         </div>
                     </div>
@@ -161,48 +164,6 @@
         </div>
     </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const answerButtons = document.querySelectorAll('.answer-button');
-
-            answerButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const isCorrect = this.getAttribute('data-is-correct');
-                    const taskId = this.getAttribute('data-task-id');
-                    const answer = this.getAttribute('data-answer');
-
-                    // Send AJAX request to submit the answer
-                    const xhr = new XMLHttpRequest();
-                    xhr.open('POST', '/submit/answer');
-                    xhr.setRequestHeader('Content-Type', 'application/json');
-                    xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
-                    xhr.onload = function() {
-                        if (xhr.status === 200) {
-                            alert('Answer submitted successfully!');
-
-                            // Check if the answer is correct
-                            if (isCorrect === '1') {
-                                // Disable all answer buttons for this task
-                                const taskAnswerButtons = document.querySelectorAll('.answer-button[data-task-id="' + taskId + '"]');
-                                taskAnswerButtons.forEach(btn => {
-                                    btn.disabled = true;
-                                });
-                                window.location.reload();
-                            }
-                            // Optionally, you can update UI based on the response
-                        } else {
-                            console.error('Failed to submit answer. Please try again.');
-                        }
-                    };
-                    xhr.onerror = function() {
-                        console.error('Failed to submit answer. Please try again.');
-                    };
-                    xhr.send(JSON.stringify({ task_id: taskId, answer: answer }));
-
-                });
-            });
-        });
-    </script>
 
     <script src="/js/ToggleAnswerVisibility.js"></script>
 

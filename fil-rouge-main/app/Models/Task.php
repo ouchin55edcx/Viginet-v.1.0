@@ -17,7 +17,7 @@ class Task extends Model
         return $this->belongsTo(Lesson::class);
     }
 
-    public function Answer()
+    public function answer()
     {
         return $this->hasMany(Answer::class, 'task_id');
     }

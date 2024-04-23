@@ -46,18 +46,9 @@ class ClientController extends Controller
             ->get();
 
 
-//        scrore
-
-        // Find the score record for the authenticated user
-        $score = Score::where('user_id', $user->id)->latest()->first();
-        // Prepare data to pass to the profile view
-        $userScore = $score ? [
-            'score' => $score->score,
-            'progress' => $score->progress,
-        ] : null;
 
 //        dd($userScore);
-        return view('client.index', compact('userInfo', 'posts', 'questions','savedPosts','userScore','complaints'));
+        return view('client.index', compact('userInfo', 'posts', 'questions','savedPosts','complaints'));
     }
 
     public function update(Request $request, $id)
