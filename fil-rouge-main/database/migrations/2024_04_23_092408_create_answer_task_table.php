@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('choices', function (Blueprint $table) {
+        Schema::create('answer_task', function (Blueprint $table) {
             $table->id();
-            $table->string('choice_text');
-            $table->boolean('is_correct');
+            $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('task_id');
+            $table->boolean('isComplete')->default(false); // Add isComplete column
             $table->timestamps();
 
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
+
         });
     }
 
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('choices');
+        Schema::dropIfExists('answer_task');
     }
 };

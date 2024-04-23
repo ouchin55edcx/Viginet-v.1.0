@@ -17,14 +17,22 @@ class Task extends Model
         return $this->belongsTo(Lesson::class);
     }
 
-    public function choices()
+    public function Answer()
     {
-        return $this->hasMany(Choice::class, 'task_id');
+        return $this->hasMany(Answer::class, 'task_id');
     }
 
     public function image()
     {
         return $this->hasOne(Image::class, 'imageable_id');
+    }
+
+
+    public function clients()
+    {
+        return $this->belongsToMany(Client::class, 'answer_task')
+            ->withPivot('isComplete')
+            ->withTimestamps();
     }
 
 

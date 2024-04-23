@@ -31,5 +31,12 @@ class Client extends Model
         return $this->belongsToMany(Post::class, 'likes', 'client_id', 'post_id');
     }
 
+    public function tasks()
+    {
+        return $this->belongsToMany(Task::class, 'answer_task')
+            ->withPivot('isComplete')
+            ->withTimestamps();
+    }
+
 
 }

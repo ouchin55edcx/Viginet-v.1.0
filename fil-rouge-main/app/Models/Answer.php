@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Choice extends Model
+class Answer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['choice_text','is_correct','task_id'];
+    protected $fillable = ['choiceText','isCorrect','task_id'];
 
 
     public function task()

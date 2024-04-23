@@ -55,9 +55,10 @@
 
 
         <div class="my-4 flex flex-col 2xl:flex-row space-y-4 2xl:space-y-0 2xl:space-x-4">
-            <div class="w-full flex flex-col 2xl:w-1/3">
-                <!-- update.blade.php -->
+            <div class="w-full flex flex-col ">
 
+
+                <!-- update.blade.php -->
                 <div class="flex-1 bg-white rounded-lg shadow-xl p-8">
                     <h4 class="text-xl text-gray-900 font-bold">Informations Personnelles</h4>
                     <form method="POST" action="{{ route('client.update', $userInfo->id) }}">
@@ -89,6 +90,74 @@
                         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Save Changes</button>
                     </form>
                 </div>
+
+                <main class="container mx-auto px-4 py-8">
+                    <div class="flex justify-between items-center mb-8">
+                        <div>
+                            <h1 class="text-3xl font-bold mb-2">Cyber Security</h1>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center mb-8">
+                        <a
+                            href="#"
+                            class="mx-2 text-gray-600 hover:text-gray-800 font-semibold"
+                        >Discussion</a
+                        >
+                        <a
+                            href="#"
+                            class="mx-2 text-gray-600 hover:text-gray-800 font-semibold"
+                        >Resources</a
+                        >
+                        <a
+                            href="#"
+                            class="mx-2 text-gray-600 hover:text-gray-800 font-semibold"
+                        >Community</a
+                        >
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4 mb-8">
+                        <img
+                            src="/storage/images/presecurity.svg"
+                            alt="Image 1"
+                            class="rounded-lg shadow-md"
+                        />
+                        <img
+                            src="/storage/images/presecurity.svg"
+                            alt="Image 2"
+                            class="rounded-lg shadow-md"
+                        />
+                        <img
+                            src="/storage/images/presecurity.svg"
+                            alt="Image 3"
+                            class="rounded-lg shadow-md"
+                        />
+                        <img
+                            src="/storage/images/presecurity.svg"
+                            alt="Image 4"
+                            class="rounded-lg shadow-md"
+                        />
+                        <img
+                            src="/storage/images/presecurity.svg"
+                            alt="Image 5"
+                            class="rounded-lg shadow-md"
+                        />
+                        <img
+                            src="/storage/images/presecurity.svg"
+                            alt="Image 6"
+                            class="rounded-lg shadow-md"
+                        />
+                    </div>
+
+                    <div class="text-center mb-8">
+                        <button
+                            class="bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-md"
+                        >
+                            Load more
+                        </button>
+                    </div>
+                </main>
+
 
                 {{--     saved post --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">

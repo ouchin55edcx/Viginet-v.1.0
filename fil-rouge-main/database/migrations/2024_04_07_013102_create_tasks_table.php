@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('title');
             $table->string('content');
             $table->string('question');
-            $table->boolean('is_complete')->default(false); // Add is_complete column
             $table->unsignedBigInteger('lesson_id');
             $table->timestamps();
             $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade');

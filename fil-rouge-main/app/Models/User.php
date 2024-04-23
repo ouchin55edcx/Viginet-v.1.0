@@ -75,9 +75,6 @@ class User extends Authenticatable
         return $this->hasOne(Image::class);
     }
 
-    public function scores()
-    {
-        return $this->hasMany(Score::class);
-    }
+
 
 }
