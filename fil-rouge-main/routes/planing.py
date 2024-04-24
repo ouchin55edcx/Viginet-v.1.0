@@ -67,6 +67,8 @@ go to create fucking brief
 
 
 
+ls
+ls
 
 
 
