@@ -33,7 +33,7 @@ class Client extends Model
 
     public function tasks()
     {
-        return $this->belongsToMany(Task::class, 'answer_task')
+        return $this->belongsToMany(Task::class, 'answer_task', 'client_id', 'task_id')
             ->withPivot('isComplete')
             ->withTimestamps();
     }

@@ -76,15 +76,15 @@
                 </div>
 
             @endguest
-
             @foreach ($tasks as $task)
-                <div class="my-2">
+
+                    <div class="my-2">
                     <div
                         class="flex items-center justify-between bg-[#223654] pl-3 pr-2 py-3 w-full rounded text-gray-600 font-bold cursor-pointer">
                         <div class="flex gap-12">
                             <span class="text-[#ECBB0A]">Task {{ $loop->iteration }}</span>
                             <h1 class="text-white">{{ $task->title }}</h1>
-                            @if ($task->is_complete)
+                            @if ($completedTaskIds->contains($task->id))
                                 <span class="text-green-500 ml-2">Completed</span>
                             @endif
                         </div>
@@ -121,17 +121,24 @@
                                             <p class="ml-8 text-gray-800 text-lg font-semibold">{{ $task->question }}</p>
                                             <ul class="flex flex-col gap-4 ml-16">
                                                 @foreach ($task->answer as $choice)
-                                                    <li>
+                                                    @if ($completedTaskIds->contains($task->id))
+                                                        <button type="submit" class="answer-button w-full px-6 py-3 rounded-md focus:outline-none border-2 border-blue-500 shadow-md bg-white text-blue-500 font-semibold transition-colors duration-300 hover:bg-blue-500 hover:text-white" disabled>
+                                                            {{ $choice->choiceText }}
+                                                        </button>
+                                                    @else
                                                         <form action="{{ route('submit.answer') }}" method="POST" onsubmit="return validateAnswer({{ $choice->isCorrect }});">
                                                             @csrf
                                                             <input type="hidden" name="choiceId" value="{{ $choice->id }}">
                                                             <input type="hidden" name="taskId" value="{{ $task->id }}">
-                                                            <button type="submit" class="answer-button w-full px-6 py-3 rounded-md focus:outline-none border-2 border-blue-500 shadow-md bg-white text-blue-500 font-semibold transition-colors duration-300 hover:bg-blue-500 hover:text-white">
-                                                                {{ $choice->choiceText }}
-                                                            </button>
+                                                            @if($completedTaskIds->isComplate = 1)
+                                                                <button type="submit" class="answer-button w-full px-6 py-3 rounded-md focus:outline-none border-2 border-blue-500 shadow-md bg-white text-blue-500 font-semibold transition-colors duration-300 hover:bg-blue-500 hover:text-white">
+                                                                    {{ $choice->choiceText }}
+                                                                </button>
+                                                            @endif
                                                         </form>
-                                                    </li>
+                                                    @endif
                                                 @endforeach
+
                                             </ul>
                                         </div>
 
@@ -164,6 +171,10 @@
         </div>
     </section>
 
+
+    <script !src="">
+        const disablebtn = document.getElementsByClass()
+    </script>
 
     <script src="/js/ToggleAnswerVisibility.js"></script>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Courses;
 
 use App\Http\Controllers\Controller;
 use App\Models\Answer;
+use App\Models\Client;
 use App\Models\Lesson;
 use App\Models\Question;
 use App\Models\Task;
@@ -17,50 +18,48 @@ class CourseDetailsController extends Controller
 {
     public function index($lessonId)
     {
+
+        $clientId = Client::where('user_id', Auth::id())->value('id');
+
         $lesson = Lesson::findOrFail($lessonId);
         $thisLesson = Lesson::where('id', $lessonId)->with('image')->first();
         $tasks = Task::where('lesson_id', $lessonId)
             ->with('image','answer')
             ->get();
 
-        //dd($tasks);
+
+        $completedTaskIds = Task::whereHas('clients', function ($query) use ($clientId) {
+            $query->where('client_id', $clientId)
+                ->where('isComplete', 1);
+        })->pluck('id');
+
         return view('courses.course.course_details', [
             'lesson' => $lesson,
             'tasks' => $tasks,
-            'thisLesson' => $thisLesson
+            'thisLesson' => $thisLesson,
+            'completedTaskIds' => $completedTaskIds
         ]);
     }
-//if answer correcxt insert it if not display alert to try again
+
     public function submitAnswer(Request $request)
     {
         try {
-            // Retrieve inputs from the request
-            $answerId = $request->input('choiceId');
             $taskId = $request->input('taskId');
-            $userId = Auth::user()->id;
 
-            dd($answerId, $taskId , $userId);
-            // Find the answer or throw a ModelNotFoundException
-            $answer = Answer::findOrFail($answerId);
+            $clientId = Auth::user()->client->id;
 
-            // Check if the answer is correct
-            if ($answer->isCorrect) {
-                // Update the answer record
-                $answer->create([
-                    'client_id' => $userId,
-                    'isCompleted' => true,
-                ]);
+            $task = Task::findOrFail($taskId);
 
-                return redirect()->back()->with('success', 'Correct answer!');
-            } else {
-                return redirect()->back()->with('error', 'This answer is incorrect!');
-            }
+            $task->clients()->attach($clientId, ['isComplete' => true]);
+
+            return redirect()->back()->with('success', 'Task completed successfully!');
+
         } catch (ModelNotFoundException $e) {
-            return redirect()->back()->with('error', 'Answer not found!');
-        } catch (ValidationException $e) {
-            return redirect()->back()->with('error', $e->getMessage());
+            dd($e->getMessage());
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'An error occurred while processing your request.');
+            dd($e->getMessage());
+
         }
     }
+
 }

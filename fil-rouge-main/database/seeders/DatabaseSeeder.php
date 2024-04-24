@@ -24,10 +24,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             // ImagesTableSeeder::class,
-            CategoriesTableSeeder::class,
-            LessonTableSeeder::class
+            UserSeeder::class
 
         ]);
- 
+
     }
 }

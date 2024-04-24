@@ -13,7 +13,7 @@
     {
         public function index()
         {
-            return view('complaint.index');
+            return view('Complaint.index');
         }
 
 
