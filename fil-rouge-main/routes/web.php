@@ -56,6 +56,9 @@ Route::middleware('role:SuperAdmin')->group(function () {
 
     Route::post('/admin/course/addTask', [\App\Http\Controllers\Admin\course\AddTaskController::class, 'store'])->name('admin.course.addTask.store');
     Route::post('/admin/course/addCourse', [\App\Http\Controllers\Admin\course\AddCourseController::class, 'store'])->name('admin.course.addCourse.store');
+
+    Route::patch('/clients/{id}', [AdminController::class, 'updateStatus'])->name('clients.updateStatus');
+
 });
 
 // Routes for ExpertController

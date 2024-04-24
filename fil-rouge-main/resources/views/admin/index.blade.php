@@ -55,7 +55,6 @@
 
 
     <!-- user manager -->
-
     <div class="m-8">
         <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -105,22 +104,59 @@
                                 </p>
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<span
-                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                        <span aria-hidden
-                                              class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-									<span class="relative">Activo</span>
-									</span>
+                                <span class="relative inline-block px-3 py-1 font-semibold leading-tight">
+                                    <span class="absolute inset-0 rounded-full"></span>
+                                    <span class="relative" id="clientStatus{{ $client->client->id }}">
+                                        {{ $client->client->status }}
+                                    </span>
+                                </span>
+                                <button class="ml-2 px-2 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                                        onclick="toggleClientStatus('{{ $client->client->id }}', '{{ $client->status }}')">
+                                    Change Status
+                                </button>
                             </td>
+
                         </tr>
 
                     @endforeach
                     </tbody>
                 </table>
-                        {{ $clients->links() }}
+                {{ $clients->links() }}
             </div>
         </div>
     </div>
+
+
+    <script>
+        function toggleClientStatus(clientId, currentStatus) {
+            var newStatus = (currentStatus === 'active') ? 'inactive' : 'active';
+
+            fetch(`/clients/${clientId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({ status: newStatus })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Parse the JSON response to get the updated status
+                        return response.json();
+                    } else {
+                        throw new Error('Failed to toggle client status');
+                    }
+                })
+                .then(data => {
+                    // Update the status text in the table with the new status
+                    document.getElementById('clientStatus' + clientId).textContent = data.status;
+                })
+                .catch(error => {
+                    console.error('Error toggling client status:', error);
+                });
+        }
+
+    </script>
 
     <!-- end user manager -->
 

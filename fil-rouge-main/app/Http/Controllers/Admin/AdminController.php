@@ -26,7 +26,21 @@ class AdminController extends Controller
 
 
         $clients = User::where('role','client')->with('client')->paginate(1);
+        //dd($clients);
 
         return view('admin.index', compact('categories', 'ClientsCount', 'LessonsCount', 'CategoriesCount', 'ComplaintsCount','clients'));
     }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $client = Client::findOrFail($id);
+
+        // Toggle the status
+        $newStatus = ($client->status === 'active') ? 'inactive' : 'active';
+        $client->update(['status' => $newStatus]);
+
+        // Return the updated status in the response
+        return response()->json(['status' => $newStatus]);
+    }
+
 }
