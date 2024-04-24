@@ -62,8 +62,8 @@ Route::middleware('role:SuperAdmin')->group(function () {
 });
 
 // Routes for ExpertController
-Route::middleware('role:Expert')->prefix('expert')->group(function () {
-    Route::resource('/', ExpertController::class)->only('index');
+Route::middleware('role:Expert')->group(function () {
+    Route::resource('/expert', ExpertController::class)->only('index');
     Route::post('/expert/approve', [ExpertController::class, 'approve'])->name('expert.approve');
 });
 
