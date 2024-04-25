@@ -9,7 +9,7 @@ class Report extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['summary', 'findings', 'recommendations'];
+    protected $fillable = ['summary', 'findings', 'recommendations','complaint_id'];
 
     public function complaint()
     {

@@ -8,6 +8,7 @@
 </head>
 
 <body>
+
 <!-- component -->
 <div class="h-screen w-full flex overflow-hidden select-none">
 
@@ -158,50 +159,74 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <h2 class="text-lg font-semibold text-gray-800">Complaint Details</h2>
-                        <p class="text-sm text-gray-600">ID: {{ $complaint['id'] }}</p>
+                        <p class="text-sm text-gray-600">ID: {{ $complaint['id'] ?? 'N/A' }}</p>
                     </div>
                     <div class="text-gray-600">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-{{ $complaint['status'] === 'approved' ? 'green-100 text-green-800' : 'red-100 text-red-800' }}">
-                    {{ $complaint['status'] }}
-                </span>
+                        @isset($complaint['status'])
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-{{ $complaint['status'] === 'approved' ? 'green-100 text-green-800' : 'red-100 text-red-800' }}">
+                        {{ $complaint['status'] }}
+                    </span>
+                        @else
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-200 text-gray-600">
+                        Status Unknown
+                    </span>
+                        @endisset
                     </div>
                 </div>
             </div>
             <div class="border-t border-gray-200">
                 <dl>
-                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">Attack Type</dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ $complaint['attack'] }}</dd>
-                    </div>
-                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">Description</dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ $complaint['description'] }}</dd>
-                    </div>
+                    @isset($complaint['attack'])
+                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-500">Attack Type</dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ $complaint['attack'] }}</dd>
+                        </div>
+                    @endisset
+
+                    @isset($complaint['description'])
+                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-500">Description</dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ $complaint['description'] }}</dd>
+                        </div>
+                    @endisset
+
                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">Anonymous</dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ $complaint['is_nonymous'] ? 'Yes' : 'No' }}</dd>
                     </div>
-                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">Callback</dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ $complaint['callback'] ?? 'N/A' }}</dd>
-                    </div>
+
+                    @isset($complaint['callback'])
+                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-500">Callback</dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ $complaint['callback'] }}</dd>
+                        </div>
+                    @endisset
+
                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">User</dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ $complaint['user']['username'] }} ({{ $complaint['user']['email'] }})</dd>
+                        @isset($complaint['user'])
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ $complaint['user']['username'] }} ({{ $complaint['user']['email'] }})</dd>
+                        @else
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">User Not Available</dd>
+                        @endisset
                     </div>
+
                     <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">Expert</dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ $complaint['expert_id'] ?? 'N/A' }}</dd>
                     </div>
+
                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">Created At</dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ $complaint['created_at'] }}</dd>
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ $complaint['created_at'] ?? 'N/A' }}</dd>
                     </div>
+
                     <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">Updated At</dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ $complaint['updated_at'] }}</dd>
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ $complaint['updated_at'] ?? 'N/A' }}</dd>
                     </div>
-                    @if ($complaint['image']->isNotEmpty())
+
+                    @if (!empty($complaint['image']))
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Attachment</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
@@ -213,11 +238,10 @@
             </div>
             <div class="px-6 py-4 flex justify-between">
                 <button id="openPopupBtn" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                   write report
+                    Write Report
                 </button>
             </div>
         </div>
-
         <!-- Popup -->
         <div id="popup" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
             <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -226,59 +250,21 @@
                         <h2 class="text-lg font-semibold text-gray-800">Write Report</h2>
                     </div>
                     <div class="border-t border-gray-200">
-                        <form class="px-6 py-4">
+                        <form action="{{ route('reports.store') }}" method="POST" class="px-6 py-4">
+                            @csrf
+
+                            <input type="hidden" name="complaint_id" value="{{ $complaint['id'] }}<">
                             <div class="mb-4">
-                                <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                                <input type="text" name="title" id="title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <label for="summary" class="block text-sm font-medium text-gray-700">Summary</label>
+                                <textarea name="summary" id="summary" rows="2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
                             </div>
                             <div class="mb-4">
-                                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                                <textarea name="description" id="description" rows="4" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                                <label for="findings" class="block text-sm font-medium text-gray-700">Findings</label>
+                                <textarea name="findings" id="findings" rows="4" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
                             </div>
                             <div class="mb-4">
-                                <label class="block text-sm font-medium text-gray-700">Severity</label>
-                                <div class="mt-1">
-                                    <div class="flex items-center">
-                                        <input id="severity-low" name="severity" type="radio" value="low" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
-                                        <label for="severity-low" class="ml-3 block text-sm font-medium text-gray-700">
-                                            Low
-                                        </label>
-                                    </div>
-                                    <div class="flex items-center mt-2">
-                                        <input id="severity-medium" name="severity" type="radio" value="medium" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
-                                        <label for="severity-medium" class="ml-3 block text-sm font-medium text-gray-700">
-                                            Medium
-                                        </label>
-                                    </div>
-                                    <div class="flex items-center mt-2">
-                                        <input id="severity-high" name="severity" type="radio" value="high" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
-                                        <label for="severity-high" class="ml-3 block text-sm font-medium text-gray-700">
-                                            High
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-4">
-                                <label class="block text-sm font-medium text-gray-700">
-                                    Attachments
-                                </label>
-                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                                    <div class="space-y-1 text-center">
-                                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                        <div class="flex text-sm text-gray-600">
-                                            <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                                <span>Upload a file</span>
-                                                <input id="file-upload" name="file-upload" type="file" class="sr-only">
-                                            </label>
-                                            <p class="pl-1">or drag and drop</p>
-                                        </div>
-                                        <p class="text-xs text-gray-500">
-                                            PNG, JPG, GIF up to 10MB
-                                        </p>
-                                    </div>
-                                </div>
+                                <label for="recommendations" class="block text-sm font-medium text-gray-700">Recommendations</label>
+                                <textarea name="recommendations" id="recommendations" rows="3" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
                             </div>
                             <div class="flex justify-end">
                                 <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -291,11 +277,8 @@
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
-
-
         <script>
             const openPopupBtn = document.getElementById('openPopupBtn');
             const popup = document.getElementById('popup');
