@@ -65,6 +65,8 @@ Route::middleware('role:SuperAdmin')->group(function () {
 Route::middleware('role:Expert')->group(function () {
     Route::resource('/expert', ExpertController::class)->only('index');
     Route::post('/expert/approve', [ExpertController::class, 'approve'])->name('expert.approve');
+    Route::get('/expert/approveComplaint/{id}', [\App\Http\Controllers\Expert\ApproveComplaintController::class, 'index'])->name('aproveComplainte');
+
 });
 
 
