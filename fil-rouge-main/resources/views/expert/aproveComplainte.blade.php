@@ -10,6 +10,7 @@
 <body>
 <!-- component -->
 <div class="h-screen w-full flex overflow-hidden select-none">
+
     <nav class="w-24 flex flex-col items-center bg-white dark:bg-gray-800 py-4">
         <!-- Left side NavBar -->
 
@@ -147,6 +148,7 @@
         </div>
 
     </nav>
+
     <main
         class="my-1 pt-2 pb-2 px-10 flex-1 bg-gray-200 dark:bg-black rounded-l-lg
 		transition duration-500 ease-in-out overflow-y-auto">
@@ -210,11 +212,8 @@
                 </dl>
             </div>
             <div class="px-6 py-4 flex justify-between">
-                <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Send Report
-                </a>
                 <button id="openPopupBtn" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                    View Popup
+                   write report
                 </button>
             </div>
         </div>
@@ -295,6 +294,8 @@
 
             </div>
         </div>
+
+
         <script>
             const openPopupBtn = document.getElementById('openPopupBtn');
             const popup = document.getElementById('popup');
