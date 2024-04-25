@@ -92,6 +92,7 @@
                 </div>
 
 
+
                 {{--     saved post --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                     @foreach ($savedPosts as $post)
@@ -117,6 +118,9 @@
                         </div>
                     @endforeach
                 </div>
+
+
+                {{-- Courses --}}
 
                 @foreach ($lessons as $lesson)
                     <div class="bg-white rounded-lg shadow-md overflow-hidden mb-4">
@@ -149,14 +153,39 @@
                         </div>
                     </div>
                 @endforeach
+
+                {{-- Complainte --}}
                 <h1 class="text-center text-2xl font-bold mb-4">My Complaints</h1>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     @foreach ($complaints as $complaint)
-                        <div class="card bg-green-200 rounded-lg p-4">
-                            <p class="text-lg font-bold">Complaint ID: {{ $complaint->id }}</p>
-                            <p class="text-sm">Status: {{ ucfirst($complaint->status) }}</p>
-                            <p class="text-sm">Description: {{ strlen($complaint->description) > 10 ? substr($complaint->description, 0, 10) . '...' : $complaint->description }}</p>
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                            <div class="px-6 py-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h2 class="text-lg font-semibold text-gray-800">Complaint ID: {{ $complaint->id }}</h2>
+                                        <p class="text-sm text-gray-600">Status: {{ ucfirst($complaint->status) }}</p>
+                                    </div>
+                                    <div class="text-gray-600">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-{{ $complaint->status === 'approved' ? 'green-100 text-green-800' : 'red-100 text-red-800' }}">
+                            {{ $complaint->status }}
+                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-t border-gray-200">
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500">Description</dt>
+                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ strlen($complaint->description) > 50 ? substr($complaint->description, 0, 50) . '...' : $complaint->description }}</dd>
+                                </div>
+                            </div>
+                            <div class="px-6 py-4">
+                                @if ($complaint->report->isNotEmpty())
+                                    <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        Download Report
+                                    </a>
+                                @endif
+                            </div>
                         </div>
                     @endforeach
                 </div>

@@ -44,7 +44,7 @@ class ClientController extends Controller
             ->get();
 
 
-        $complaints = Complaint::where('user_id', $userId)
+        $complaints = Complaint::with('report')->where('user_id', $userId)
             ->select('id', 'description', 'status')
             ->get();
 
