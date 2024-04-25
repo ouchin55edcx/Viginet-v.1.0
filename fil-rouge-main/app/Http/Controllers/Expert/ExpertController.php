@@ -20,9 +20,18 @@ class ExpertController extends Controller
         ->get();
         //dd($complaints);
 
+
+        $expertId = Expert::where('user_id', Auth::id())->first()->id;
+        $aprovetComplaints = Complaint::where('expert_id',$expertId)->with(['user', 'image'])->get();
+        $ComplaintsCount = Complaint::where('expert_id',$expertId)->count();
+
+
         $count = Complaint::where('expert_id', null)->count();
 
-        return view ('expert.index',compact('complaints','count'));
+
+
+
+        return view ('expert.index',compact('complaints','count','aprovetComplaints','ComplaintsCount'));
     }
 
     public function approve(Request $request)

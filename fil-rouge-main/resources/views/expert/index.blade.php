@@ -158,8 +158,8 @@
                     <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                 </div>
                 <div class="text-right">
-                    <p class="text-2xl">1,257</p>
-                    <p>Visitors</p>
+                    <p class="text-2xl">{{$ComplaintsCount}}</p>
+                    <p>Complaint</p>
                 </div>
             </div>
             <div class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
@@ -217,78 +217,65 @@
 
                 <div>
                     <!-- List -->
+                    @foreach($aprovetComplaints as $complaint)
+                        <ul class="w-full pt-1 pb-2 px-3 overflow-y-auto">
+                            <li class="mt-2">
+                                <a
+                                    class="p-5 flex flex-col justify-between
+                                    bg-gray-100 dark:bg-gray-200 rounded-lg"
+                                    href="#">
 
-                    <ul class="w-full pt-1 pb-2 px-3 overflow-y-auto">
-                        <li class="mt-2">
+                                    <div
+                                        class="flex items-center justify-between
+                                        font-semibold capitalize dark:text-gray-700">
+                                        <!-- Top section -->
 
-                            <a
-                                class="p-5 flex flex-col justify-between
-								bg-gray-100 dark:bg-gray-200 rounded-lg"
-                                href="#">
+                                        <span>{{$complaint->attack}}</span>
 
-                                <div
-                                    class="flex items-center justify-between
-									font-semibold capitalize dark:text-gray-700">
-                                    <!-- Top section -->
+                                        <div class="flex items-center">
+                                            <svg
+                                                class="h-5 w-5 fill-current mr-1
+                                                text-gray-600"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M14 12l-4-4v3H2v2h8v3m12-4a10
+                                                    10 0 01-19.54 3h2.13a8 8 0
+                                                    100-6H2.46A10 10 0 0122 12z"></path>
+                                            </svg>
+                                        </div>
 
-                                    <span>english lesson</span>
-
-                                    <div class="flex items-center">
-                                        <svg
-                                            class="h-5 w-5 fill-current mr-1
-											text-gray-600"
-                                            viewBox="0 0 24 24">
-                                            <path
-                                                d="M14 12l-4-4v3H2v2h8v3m12-4a10
-												10 0 01-19.54 3h2.13a8 8 0
-												100-6H2.46A10 10 0 0122 12z"></path>
-                                        </svg>
-                                        <span>4.2 mi</span>
-                                    </div>
-
-                                </div>
-
-                                <p
-                                    class="text-sm font-medium leading-snug
-									text-gray-600 my-3">
-                                    <!-- Middle section -->
-                                    Lorem ipsum, dolor sit amet consectetur
-                                    adipisicing elit. Explicabo assumenda porro
-                                    sapiente, cum nobis tempore delectus
-                                    consectetur ullam reprehenderit quis ducimus,
-                                    iusto dolor nam corporis id perspiciatis
-                                    consequuntur saepe excepturi.
-                                </p>
-
-                                <div class="flex justify-between">
-                                    <!-- Bottom section -->
-
-                                    <div class="flex">
-                                        <img
-                                            class="h-6 w-6 rounded-full mr-3"
-                                            src="https://i.pinimg.com/originals/b7/06/0b/b7060b60f6ee1beeedf7d648dabd89a1.jpg"
-                                            alt="" />
-                                        <span>
-											<span
-                                                class="text-blue-500
-												font-semibold">
-												Regina C.
-											</span>
-											via HeyTutor
-										</span>
                                     </div>
 
                                     <p
                                         class="text-sm font-medium leading-snug
-										text-gray-600">
-                                        14 hours ago
+                                        text-gray-600 my-3">
+                                        <!-- Middle section -->
+                                        <span>{{ Illuminate\Support\Str::limit($complaint->description, 5) }}</span>
                                     </p>
 
-                                </div>
+                                    <div class="flex justify-between">
+                                        <!-- Bottom section -->
 
-                            </a>
-                        </li>
-                    </ul>
+                                        <div class="flex">
+                                            @if ($complaint->is_nonymous == 1)
+                                                <p class="text-lg font-bold">Anonymous</p>
+                                            @else
+                                                <p class="text-lg font-bold">{{ optional($complaint->user)->username }}</p>
+                                            @endif
+                                        </div>
+
+                                        <p
+                                            class="text-sm font-medium leading-snug
+                                            text-gray-600">
+                                            {{ $complaint->created_at->diffForHumans() }}
+                                        </p>
+
+                                    </div>
+
+                                </a>
+                            </li>
+                        </ul>
+                    @endforeach
 
                     <a
                         href="#"
@@ -344,10 +331,7 @@
             <div class="flex items-center">
                 <!-- Right side -->
 
-                <img
-                    class="h-10 w-10 rounded-full object-cover"
-                    src="https://i.pinimg.com/originals/68/e1/e1/68e1e137959d363f172dc3cc50904669.jpg"
-                    alt="tempest profile" />
+                <span style="font-weight: bold; font-size: 2rem;">{{ auth()->user()->username }}</span>
             </div>
 
         </div>
@@ -374,7 +358,12 @@
 
         @foreach ($complaints as $complaint)
             <div class="card bg-green-200 rounded-lg p-4 mb-4">
-                <p class="text-lg font-bold">Is Anonymous: {{ $complaint->is_anonymous ? 'Yes' : 'No' }}</p>
+                @if ($complaint->is_nonymous == 1)
+                    <p class="text-lg font-bold">Anonymous</p>
+                @else
+                    <p class="text-lg font-bold">{{ optional($complaint->user)->username }}</p>
+                @endif
+
                 <p class="text-sm">Type: {{ $complaint->attack }}</p>
                 <p class="text-sm">Created At: {{ $complaint->created_at }}</p>
                 <button class="approve-button bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-2" data-id="{{ $complaint->id }}">Approve</button>
