@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Ask;
 use App\Models\Client;
 use App\Models\Complaint;
+use App\Models\Lesson;
 use App\Models\Post;
 use App\Models\score;
+use App\Models\Task;
 use App\Models\User;
 use Google\Service\ShoppingContent\Resource\Pos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
@@ -19,6 +22,7 @@ class ClientController extends Controller
 
         $userId = Auth::id();
         $user = Auth::user();
+        $clientId = Client::where('user_id', Auth::id())->value('id');
         $savedPosts = $user->savedPosts;
 
         $savedPosts = Post::whereHas('savedByUsers', function ($query) {
@@ -38,7 +42,6 @@ class ClientController extends Controller
         $questions = Ask::where('user_id', $userId)
             ->withCount('askanswer')
             ->get();
-//        dd($posts);
 
 
         $complaints = Complaint::where('user_id', $userId)
@@ -46,9 +49,29 @@ class ClientController extends Controller
             ->get();
 
 
+        $lessons = DB::table('lessons')
+            ->select('lessons.title as lesson_title')
+            ->selectRaw('COUNT(DISTINCT tasks.id) as total_tasks_count')
+            ->selectRaw('COUNT(DISTINCT CASE WHEN answer_task.id IS NOT NULL THEN tasks.id END) as completed_tasks_count')
+            ->selectRaw('COALESCE(images.path, \'\') as image_path')
+            ->leftJoin('tasks', 'lessons.id', '=', 'tasks.lesson_id')
+            ->leftJoin('answer_task', function ($join) use ($clientId) {
+                $join->on('tasks.id', '=', 'answer_task.task_id')
+                    ->where('answer_task.client_id', '=', $clientId);
+            })
+            ->leftJoin('images', function ($join) {
+                $join->on('lessons.id', '=', 'images.imageable_id')
+                    ->where('images.imageable_type', '=', 'App\Models\Lesson');
+            })
+            ->groupBy('lessons.id', 'lessons.title', 'images.path')
+            ->havingRaw('completed_tasks_count > 0')
+            ->get();
+
+
+
 
 //        dd($userScore);
-        return view('client.index', compact('userInfo', 'posts', 'questions','savedPosts','complaints'));
+        return view('client.index', compact('userInfo', 'posts', 'questions','savedPosts','complaints','lessons'));
     }
 
     public function update(Request $request, $id)

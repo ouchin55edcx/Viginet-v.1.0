@@ -91,73 +91,6 @@
                     </form>
                 </div>
 
-                <main class="container mx-auto px-4 py-8">
-                    <div class="flex justify-between items-center mb-8">
-                        <div>
-                            <h1 class="text-3xl font-bold mb-2">Cyber Security</h1>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-center mb-8">
-                        <a
-                            href="#"
-                            class="mx-2 text-gray-600 hover:text-gray-800 font-semibold"
-                        >Discussion</a
-                        >
-                        <a
-                            href="#"
-                            class="mx-2 text-gray-600 hover:text-gray-800 font-semibold"
-                        >Resources</a
-                        >
-                        <a
-                            href="#"
-                            class="mx-2 text-gray-600 hover:text-gray-800 font-semibold"
-                        >Community</a
-                        >
-                    </div>
-
-                    <div class="grid grid-cols-3 gap-4 mb-8">
-                        <img
-                            src="/storage/images/presecurity.svg"
-                            alt="Image 1"
-                            class="rounded-lg shadow-md"
-                        />
-                        <img
-                            src="/storage/images/presecurity.svg"
-                            alt="Image 2"
-                            class="rounded-lg shadow-md"
-                        />
-                        <img
-                            src="/storage/images/presecurity.svg"
-                            alt="Image 3"
-                            class="rounded-lg shadow-md"
-                        />
-                        <img
-                            src="/storage/images/presecurity.svg"
-                            alt="Image 4"
-                            class="rounded-lg shadow-md"
-                        />
-                        <img
-                            src="/storage/images/presecurity.svg"
-                            alt="Image 5"
-                            class="rounded-lg shadow-md"
-                        />
-                        <img
-                            src="/storage/images/presecurity.svg"
-                            alt="Image 6"
-                            class="rounded-lg shadow-md"
-                        />
-                    </div>
-
-                    <div class="text-center mb-8">
-                        <button
-                            class="bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-md"
-                        >
-                            Load more
-                        </button>
-                    </div>
-                </main>
-
 
                 {{--     saved post --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
@@ -185,7 +118,37 @@
                     @endforeach
                 </div>
 
-
+                @foreach ($lessons as $lesson)
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden mb-4">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <img class="h-20 w-20 object-cover" src="{{ asset('storage/' . $lesson->image_path) }}" alt="{{ $lesson->lesson_title }}">
+                            </div>
+                            <div class="flex-1 px-4 py-2">
+                                <h3 class="text-lg font-semibold text-gray-800">{{ $lesson->lesson_title }}</h3>
+                                <div class="mt-2">
+                                    <div class="relative pt-1">
+                                        <div class="flex mb-2 items-center justify-between">
+                                            <div>
+                                <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-green-600 bg-green-200">
+                                    {{ $lesson->completed_tasks_count }} / {{ $lesson->total_tasks_count }} Tasks
+                                </span>
+                                            </div>
+                                            <div class="text-right">
+                                <span class="text-xs font-semibold inline-block text-green-600">
+                                    {{ round(($lesson->completed_tasks_count / $lesson->total_tasks_count) * 100) }}%
+                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-green-200">
+                                            <div style="width:{{ ($lesson->completed_tasks_count / $lesson->total_tasks_count) * 100 }}%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
                 <h1 class="text-center text-2xl font-bold mb-4">My Complaints</h1>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
