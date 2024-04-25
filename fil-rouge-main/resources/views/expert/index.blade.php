@@ -247,17 +247,14 @@
                                         </div>
 
                                     </div>
-
                                     <p
                                         class="text-sm font-medium leading-snug
                                         text-gray-600 my-3">
                                         <!-- Middle section -->
                                         <span>{{ Illuminate\Support\Str::limit($complaint->description, 5) }}</span>
                                     </p>
-
                                     <div class="flex justify-between">
                                         <!-- Bottom section -->
-
                                         <div class="flex">
                                             @if ($complaint->is_nonymous == 1)
                                                 <p class="text-lg font-bold">Anonymous</p>
@@ -265,13 +262,11 @@
                                                 <p class="text-lg font-bold">{{ optional($complaint->user)->username }}</p>
                                             @endif
                                         </div>
-
                                         <p
                                             class="text-sm font-medium leading-snug
                                             text-gray-600">
                                             {{ $complaint->created_at->diffForHumans() }}
                                         </p>
-
                                     </div>
 
                                 </a>

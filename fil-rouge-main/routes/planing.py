@@ -63,12 +63,10 @@ go to create fucking brief
 ------------------------------------
 
 !!!!!!! : probleme in save and like post : ajax probleme i need to fixed .
+--------------------------------------------------------------------------------
 
 
-
-
-ls
-ls
+run xampp : sudo /opt/lampp/./manager-linux-x64.run
 
 
 

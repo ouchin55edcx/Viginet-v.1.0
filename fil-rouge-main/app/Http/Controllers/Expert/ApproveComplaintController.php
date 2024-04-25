@@ -15,8 +15,7 @@ class ApproveComplaintController extends Controller
     {
         $complaint = Complaint::with('user', 'image')->findOrFail($id);
 
-        dd($complaint);
-
+       // dd($complaint);
 
         return view('expert.aproveComplainte', compact('complaint'));
     }
