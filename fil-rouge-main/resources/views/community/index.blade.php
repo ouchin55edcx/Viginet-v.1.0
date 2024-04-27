@@ -114,24 +114,25 @@
                         </g>
                     </svg>
                     <div class="flex items-center gap-3">
-                        @if(! in_array(auth()->id() ,$post->savedByUsers()->pluck("user_id")->toArray()))
-                            <button id="saveButton{{ $post->id }}" class="text-blue-500"
-                                    onclick="toggleSave({{ $post->id }})">
+                        @if(! in_array(auth()->id(), $post->savedByUsers()->pluck('user_id')->toArray()))
+                            <button id="saveButton{{ $post->id }}" class="text-blue-500" onclick="toggleSave({{ $post->id }})">
                                 Save
                             </button>
                         @else
-                            <button id="saveButton{{ $post->id }}" class="text-blue-500"
-                                    onclick="toggleSave({{ $post->id }})">
+                            <button id="saveButton{{ $post->id }}" class="text-blue-500" onclick="toggleSave({{ $post->id }})">
                                 UnSave
                             </button>
                         @endif
-                        <div class="savedMessage text-sm hidden">Saved</div>
                     </div>
 
                     <script>
                         function toggleSave(postId) {
                             const saveButton = document.getElementById('saveButton' + postId);
-                            const savedMessage = document.querySelector('.savedMessage');
+
+                            if (!saveButton) {
+                                console.error('Save button not found for postId:', postId);
+                                return; // Exit function if saveButton is not found
+                            }
 
                             fetch(`/posts/${postId}/save`, {
                                 method: 'POST',
@@ -140,19 +141,31 @@
                                     'Content-Type': 'application/json',
                                 },
                             })
-                                .then(response => response.json())
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Failed to save or unsave post');
+                                    }
+                                    return response.json();
+                                })
                                 .then(data => {
-                                    if (data.message.includes('saved')) {
-                                        saveButton.textContent = 'Unsave';
-                                        savedMessage.classList.remove('hidden');
-                                    } else {
+                                    console.log('Toggle save response:', data);
+
+                                    // Check the response message and update button text accordingly
+                                    if (data.message === 'Post saved successfully.') {
+                                        saveButton.textContent = 'UnSave';
+                                    } else if (data.message === 'Post unsaved successfully.') {
                                         saveButton.textContent = 'Save';
-                                        savedMessage.classList.add('hidden');
+                                    } else {
+                                        console.error('Unknown response message:', data.message);
                                     }
                                 })
-                                .catch(error => console.error(error));
+                                .catch(error => {
+                                    console.error('Toggle save error:', error);
+                                });
                         }
                     </script>
+
+
                 </div>
             </div>
             <!-- Assuming you have a parent container (e.g., a <div>) to wrap the comments -->
@@ -193,6 +206,8 @@
     @endforeach
     <!-- /Tweet -->
 
+
+
     <!-- Spinner -->
     <div class="flex items-center justify-center p-4 border-b border-l border-2 border-gray-200 bg-white">
 
@@ -201,10 +216,6 @@
 
     </div>
     <!-- /Middle -->
-
-    </div>
-    </div>
-
 
 
 

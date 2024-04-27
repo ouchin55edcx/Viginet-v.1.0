@@ -239,10 +239,11 @@
                 </div>
 
             </div>
-                <div class="flex justify-around bg-white mt-4 shadow-md">
-                    <a href="{{ route('community.index') }}" class="text-gray-800 hover:text-blue-500 py-2 px-4 inline-block">Posts</a>
-                    <a href="{{ route('asks.index') }}" class="text-gray-800 hover:text-blue-500 py-2 px-4 inline-block">Questions</a>
-                </div>
+            <div class="flex justify-around bg-white mt-4 shadow-md">
+                <a href="{{ route('community.index') }}" class="text-gray-800 hover:text-blue-500 py-2 px-4 inline-block">Posts</a>
+                <a href="{{ route('asks.index') }}" class="text-gray-800 hover:text-blue-500 py-2 px-4 inline-block">Questions</a>
+            </div>
+
             <script !src="">
                 const searchInput = document.getElementById('searchInput');
                 const searchResults = document.getElementById('searchResults');

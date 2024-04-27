@@ -258,14 +258,6 @@
                                                 </td>
                                                 <td class="px-4 md:px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm text-gray-500">
-                                                        Upvotes
-                                                    </div>
-                                                    <div class="text-2xl font-bold text-gray-900">
-                                                        -
-                                                    </div>
-                                                </td>
-                                                <td class="px-4 md:px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-500">
                                                         Comments
                                                     </div>
                                                     <div class="text-2xl font-bold text-gray-900">
