@@ -59,6 +59,8 @@ Route::middleware('role:SuperAdmin')->group(function () {
 
     Route::patch('/clients/{id}', [AdminController::class, 'updateStatus'])->name('clients.updateStatus');
 
+    Route::delete('/lessons/{lesson}', [CorseManagerController::class, 'destroy'])->name('lessons.destroy');
+
 });
 
 // Routes for ExpertController
