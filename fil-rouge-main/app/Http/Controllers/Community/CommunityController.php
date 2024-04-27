@@ -18,6 +18,7 @@ class CommunityController extends Controller
             $user = Auth::user();
 
             $posts = Post::with(['image', 'comments.user', 'user'])
+                ->withCount('comments')
                 ->orderBy('created_at', 'desc')
                 ->get();
             //dd($posts);

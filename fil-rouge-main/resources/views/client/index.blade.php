@@ -141,8 +141,11 @@
                     <div class="bg-white rounded-lg shadow-md overflow-hidden mb-4">
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
-                                <img class="h-20 w-20 object-cover" src="{{ asset('storage/' . $lesson->image_path) }}"
-                                     alt="{{ $lesson->lesson_title }}">
+                                <a href="#">
+                                    <img class="h-20 w-20 object-cover" src="{{ asset('storage/' . $lesson->image_path) }}"
+                                         alt="{{ $lesson->lesson_title }}">
+                                </a>
+
                             </div>
                             <div class="flex-1 px-4 py-2">
                                 <h3 class="text-lg font-semibold text-gray-800">{{ $lesson->lesson_title }}</h3>
@@ -187,10 +190,10 @@
                                         <p class="text-sm text-gray-600">Status: {{ ucfirst($complaint->status) }}</p>
                                     </div>
                                     <div class="text-gray-600">
-                        <span
-                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-{{ $complaint->status === 'approved' ? 'green-100 text-green-800' : 'red-100 text-red-800' }}">
-                            {{ $complaint->status }}
-                        </span>
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-{{ $complaint->status === 'approved' ? 'green-100 text-green-800' : 'red-100 text-red-800' }}">
+                                        {{ $complaint->status }}
+                                    </span>
                                     </div>
                                 </div>
                             </div>

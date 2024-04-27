@@ -70,7 +70,7 @@
                             </g>
                         </g>
                     </svg>
-                    <div class="text-sm	">10 Comments</div>
+                    <div class="text-sm	">{{$post->comments_count}} Comments</div>
                 </div>
                 <div class="flex items-center gap-3">
                     <button id="likeButton{{ $post->id }}" class="text-red-500" onclick="toggleLike({{ $post->id }})">
