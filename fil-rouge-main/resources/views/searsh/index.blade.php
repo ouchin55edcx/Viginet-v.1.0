@@ -1,8 +1,9 @@
 @extends('layouts.navbar')
 
 @section('content')
-    <section class="bg-white dark:bg-gray-900 flex justify-between" style="background-image: url('storage/images/learnbg.png'); background-size: cover; object-fit: cover; width: 100%;">
-        <div class="py-8 mx-12 ">
+
+    <section class="bg-white h-[45vh] flex justify-between my-16"  style="background-image: url('storage/images/learnbg.png'); background-size: cover; object-fit: cover; width: 100%;">
+        <div class="py-8 mx-12 my-8 ">
             <h1 class="mb-4 text-5xl font-extrabold text-white">Search</h1>
             <div class="flex items-center gap-2 bg-[#05192D] max-w-sm p-1 rounded">
                 <img src="storage/images/searsh1.png" alt="" class="w-6 h-6">
@@ -11,7 +12,7 @@
             <p class="mb-8 mt-4 text-lg font-normal text-white">Search hundreds of walkthroughs and challenges by security category or difficulty.</p>
         </div>
         <div class="hidden md:flex items-center justify-end mx-12">
-            <img src="storage/images/searshdiv.png" alt="">
+            <img src="/storage/images/searshdiv.png" alt="">
         </div>
     </section>
 
@@ -31,32 +32,29 @@
             </button>
         </div>
     </div>
-
     <!-- Display Lessons -->
     <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-2" id="lessons-container">
         @foreach($lessons as $lesson)
-            <div class="max-w-2xl mx-auto mt-8 flex flex-col p-2">
-                <div class="flex gap-3 bg-white border border-gray-300 rounded-xl overflow-hidden items-center justify-start relative">
-                    <div>
-                        <div class="flex justify-between gap-2 py-2">
-                            <div class="relative w-32 h-32 flex-shrink-0">
-                                <img class="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50" loading="lazy" src="https://tryhackme.com/r/path/outline/presecurity">
-                            </div>
-                            <div class="text-center flex flex-col items-center justify-center">
-                                <p class="text-xl font-bold text-center">{{$lesson->title}}</p>
-                                <p class="text-gray-500 text-center">{{$lesson->description}}</p>
-                            </div>
+            <div class="mt-8 flex flex-col p-2">
+                <div class="bg-white border border-gray-300 rounded-xl overflow-hidden">
+                    <div class="flex items-center px-4 py-3">
+                        <div class="flex-shrink-0 w-32 h-32 relative">
+                            <a href="{{ route('course_details.index', ['lessonId' => $lesson->id]) }}" ><img class="w-full h-full object-cover rounded-lg" loading="lazy" src="/storage/{{$lesson->image->path}}" alt="{{$lesson->title}}"></a>
                         </div>
-                        <div class="h-10 flex justify-between items-center px-3 border-2 border-gray-300">
-                            <h3 class="text-white font-bold bg-gray-700 rounded-full m-1 p-1">{{$lesson->category->name}}</h3>
-                            <p class="text-blue-400">Info</p>
+                        <div class="ml-8">
+                            <p class="text-xl font-bold ">{{$lesson->title}}</p>
+                            <p class="text-gray-500">{{$lesson->description}}</p>
                         </div>
+                    </div>
+                    <div class="flex justify-between items-center px-4 py-2 bg-gray-100 border-t border-gray-300">
+                        <h3 class="text-gray-700 font-bold text-sm bg-gray-300 rounded-full py-1 px-2">{{$lesson->category->name}}</h3>
+                        <a href="#" class="text-blue-500 hover:text-blue-700">Info</a>
                     </div>
                 </div>
             </div>
         @endforeach
-
     </div>
+
     <!-- Pagination Links -->
     <div class="mt-4 flex justify-center">
         <div class="bg-white px-4 py-3 flex justify-between border-gray-200">
@@ -83,26 +81,23 @@
 
                     data.lessons.forEach(function(lesson) {
                         lessonsHtml += `
-                        <div class="max-w-2xl mx-auto mt-8 flex flex-col p-2">
-                            <div class="flex gap-3 bg-white border border-gray-300 rounded-xl overflow-hidden items-center justify-start relative">
-                                <div>
-                                    <div class="flex justify-between gap-2 py-2">
-                                        <div class="relative w-32 h-32 flex-shrink-0">
-                                            <img class="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50" loading="lazy" src="https://tryhackme.com/r/path/outline/presecurity">
-                                        </div>
-                                        <div class="text-center flex flex-col items-center justify-center">
-                                            <p class="text-xl font-bold text-center">${lesson.title}</p>
-                                            <p class="text-gray-500 text-center">${lesson.description}</p>
-                                        </div>
+                        <div class="mt-8 flex flex-col p-2">
+                            <div class="bg-white border border-gray-300 rounded-xl overflow-hidden">
+                                <div class="flex items-center px-4 py-3">
+                                    <div class="flex-shrink-0 w-32 h-32 relative">
+                                        <a href="{{ route('course_details.index', ['lessonId' => $lesson->id]) }}"><img class="w-full h-full object-cover rounded-lg" loading="lazy" src="/storage/${lesson.image.path}" alt="${lesson.title}"></a>
                                     </div>
-                                    <div class="h-10 flex justify-between items-center px-3 border-2 border-gray-300">
-                                        <h3 class="text-white font-bold bg-gray-700 rounded-full m-1 p-1">${lesson.category.name}</h3>
-                                        <p class="text-blue-400">Info</p>
+                                    <div class="ml-4">
+                                        <p class="text-xl font-bold">${lesson.title}</p>
+                                        <p class="text-gray-500">${lesson.description}</p>
                                     </div>
                                 </div>
+                                <div class="flex justify-between items-center px-4 py-2 bg-gray-100 border-t border-gray-300">
+                                    <h3 class="text-gray-700 font-bold text-sm bg-gray-300 rounded-full py-1 px-2">${lesson.category.name}</h3>
+                                    <a href="#" class="text-blue-500 hover:text-blue-700">Info</a>
+                                </div>
                             </div>
-                        </div>
-                    `;
+                        </div>`;
                     });
 
                     document.getElementById('lessons-container').innerHTML = lessonsHtml;

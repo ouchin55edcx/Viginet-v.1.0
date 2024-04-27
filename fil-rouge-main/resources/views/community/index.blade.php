@@ -3,6 +3,7 @@
 @section('community')
     <!-- User Post -->
 
+
     @foreach($posts as $post)
         <!-- User Post -->
         <div class="border max-w-screen-md bg-white mt-6  p-4">
@@ -32,7 +33,6 @@
                     {{$post->content}}
                 </p>
             </div>
-
 
             <div class="mt-5 flex gap-2	 justify-center border-b pb-4 flex-wrap	">
                 <img src="storage/{{$post->image->path}}"
