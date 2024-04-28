@@ -11,7 +11,6 @@ class CorseController extends Controller
     public function index()
     {
         $categories = Category::with('image')->get();
-        // dd($categories);
         return view('courses.category.index', compact('categories'));
     }
 }

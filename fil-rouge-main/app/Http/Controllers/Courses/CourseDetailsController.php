@@ -33,12 +33,7 @@ class CourseDetailsController extends Controller
                 ->where('isComplete', 1);
         })->pluck('id');
 
-        return view('courses.course.course_details', [
-            'lesson' => $lesson,
-            'tasks' => $tasks,
-            'thisLesson' => $thisLesson,
-            'completedTaskIds' => $completedTaskIds
-        ]);
+        return view('courses.course.course_details', compact('lesson' , 'tasks', 'thisLesson' , 'completedTaskIds'));
     }
 
     public function submitAnswer(Request $request)

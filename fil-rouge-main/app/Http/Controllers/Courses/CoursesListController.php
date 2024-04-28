@@ -12,7 +12,9 @@ class CoursesListController extends Controller
     public function index(Request $request)
     {
         $categoryId = $request->query('id');
+
         $category = Category::findOrFail($categoryId);
+
         $lessons = Lesson::where('category_id', $category->id)->with('image')->get();
 
         $thisCategory = Category::with('image')->find($category->id);
