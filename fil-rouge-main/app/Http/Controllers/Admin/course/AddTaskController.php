@@ -74,4 +74,16 @@ class AddTaskController extends Controller
         return $image->store($directory, 'public');
     }
 
+
+    public function deleteTask($taskId)
+    {
+        try {
+            $task = Task::findOrFail($taskId);
+            $task->delete();
+            return response()->json(['message' => 'Task deleted successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete task'], 500);
+        }
+    }
+
 }

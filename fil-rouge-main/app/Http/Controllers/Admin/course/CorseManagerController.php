@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\course;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Lesson;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class CorseManagerController extends Controller
@@ -19,6 +20,14 @@ class CorseManagerController extends Controller
         return view('admin.course.coursesManager', compact('lessons','count','categories'));
     }
 
+    public function show($lessonId)
+    {
+        // Retrieve lesson details by lessonId
+        $lesson = Lesson::with('image', 'tasks')->findOrFail($lessonId);
+
+        // Return lesson details as JSON response
+        return response()->json($lesson);
+    }
 
     public function destroy($id)
     {

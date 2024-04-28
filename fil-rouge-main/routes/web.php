@@ -61,6 +61,10 @@ Route::middleware('role:SuperAdmin')->group(function () {
 
     Route::delete('/lessons/{lesson}', [CorseManagerController::class, 'destroy'])->name('lessons.destroy');
 
+    Route::get('/lessons/{lessonId}', [CorseManagerController::class, 'show'])->name('lessons.show');
+
+    Route::delete('/tasks/{taskId}', [\App\Http\Controllers\Admin\course\AddTaskController::class, 'deleteTask'])->middleware('auth')->name('tasks.delete');
+
 });
 
 // Routes for ExpertController
