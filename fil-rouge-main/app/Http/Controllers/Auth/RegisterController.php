@@ -6,18 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\RegisterUserRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Log;
 
-
 class RegisterController extends Controller
 {
-
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
     protected $redirectTo = '/login';
 
     public function __construct()
@@ -25,68 +19,36 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
-     * Handle a registration request for the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('auth.register');
     }
 
-    public function store(Request $request)
+    public function store(RegisterUserRequest $request)
     {
         try {
-            // Validate the request data
-            $validatedData = $request->validate([
-                'username' => 'required|string|max:255|unique:users',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:8|confirmed',
-                'role' => 'required|in:Client,Expert,SuperAdmin',
-            ]);
+            $validatedData = $request->validated();
 
-
-            // Hash the password before creating the user
             $validatedData['password'] = Hash::make($validatedData['password']);
 
-            // Create the user with validated data
             $user = User::create($validatedData);
 
             if ($validatedData['role'] === 'Client') {
-                $request->validate([
-                    'phone_number' => 'required|string',
-                    'address' => 'required|string',
-                ]);
-
                 $user->client()->create([
-                    'phone_number' => $request->phone_number,
-                    'address' => $request->address,
+                    'phone_number' => $validatedData['phone_number'],
+                    'address' => $validatedData['address'],
                 ]);
-
-                return redirect($this->redirectTo);
             } elseif ($validatedData['role'] === 'Expert') {
-                $request->validate([
-                    'certificate' => 'required|string',
-                    'experience' => 'required|string',
-                ]);
-
                 $user->expert()->create([
-                    'certificate' => $request->certificate,
-                    'experience' => $request->experience,
+                    'certificate' => $validatedData['certificate'],
+                    'experience' => $validatedData['experience'],
                 ]);
-
-                return redirect($this->redirectTo);
             }
 
             return redirect($this->redirectTo);
         } catch (\Exception $e) {
-            // Log the error
-            log::error('User registration failed: ' . $e->getMessage());
-            // Redirect back with error message
+            Log::error('User registration failed: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => 'An error occurred during registration. Please try again later.']);
         }
     }
 }
-
