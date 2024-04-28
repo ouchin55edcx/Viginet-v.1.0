@@ -14,11 +14,19 @@
 
     <section>
         <div class="m-16 w-[72vw] mx-auto">
-            <form method="POST" action="#" id="resetPasswordForm">
+            @if (session('status'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+            <form method="POST" action="{{ route('password.email') }}" id="resetPasswordForm">
                 @csrf
                 <div class="mb-4">
-                    <label for="login" class="block text-sm font-medium text-gray-700">Username or Email</label>
-                    <input type="text" id="login" name="login" class="mt-1 block w-full h-10 border-2 rounded-full shadow-sm hover:border-blue-500" required>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" name="email" class="mt-1 block w-full h-10 border-2 rounded-full shadow-sm hover:border-blue-500" required>
+                    @error('email')
+                    <span class="text-red-500 mt-1" role="alert">{{ $message }}</span>
+                    @enderror
                 </div>
                 <button type="submit" class="border border-yellow-500 bg-yellow-500 text-white rounded-full px-4 py-2 mt-2 transition duration-500 ease select-none hover:bg-yellow-600 focus:outline-none focus:shadow-outline">
                     Request Password Reset
