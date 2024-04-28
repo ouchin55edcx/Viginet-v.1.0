@@ -82,6 +82,7 @@ Route::middleware('role:Client')->group(function () {
     Route::resource('/courses/course/course_list', CoursesListController::class)->only('index');
     Route::get('/courses/course/{lessonId}/course_details', [CourseDetailsController::class, 'index'])->name('course_details.index');
     Route::post('/submit-answer', [CourseDetailsController::class, 'submitAnswer'])->name('submit.answer');
+    Route::delete('/complaints/{complaint}', [ComplaintController::class, 'destroy'])->name('complaints.destroy')->middleware('auth');
 });
 
 // Complaint routes

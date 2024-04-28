@@ -21,8 +21,7 @@ class CommunityController extends Controller
                 ->withCount('comments')
                 ->orderBy('created_at', 'desc')
                 ->get();
-            //dd($posts);
-            // Map through the posts to add the save status for the authenticated user
+
             $postsWithSaveStatus = $posts->map(function ($post) use ($user) {
                 $isSaved = $user->savedPosts()->where('post_id', $post->id)->exists();
 

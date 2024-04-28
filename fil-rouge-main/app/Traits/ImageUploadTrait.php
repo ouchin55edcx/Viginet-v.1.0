@@ -13,10 +13,6 @@ trait ImageUploadTrait
     {
         $directory = 'images';
         $storedPath = $image->store($directory, 'public');
-
-        // Debugging: Log the stored image path
-        Log::info('Stored image path: ' . $storedPath);
-
         return $storedPath;
     }
 

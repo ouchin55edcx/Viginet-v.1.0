@@ -8,9 +8,13 @@ use App\Models\Image;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\ImageUploadTrait;
+
 
 class PostController extends Controller
 {
+    use ImageUploadTrait;
+
     public function store(Request $request)
     {
           //validation
@@ -33,12 +37,7 @@ class PostController extends Controller
         if ($request->hasFile('image')) {
             foreach ($request->file('image') as $file) {
                 $imagePath = $this->storeImage($file);
-                // Create a new Image record linked to the complaint
-                Image::create([
-                    'path' => $imagePath,
-                    'imageable_id' => $post->id,
-                    'imageable_type' => Post::class,
-                ]);
+                $this->createImageRecord($imagePath,  $post->id, Post::class);
             }
         }
 
@@ -70,53 +69,32 @@ class PostController extends Controller
         return redirect()->back()->with('success', 'Post updated successfully!');
     }
 
-    private function storeImage($file)
-    {
-        // Generate a unique filename for the image
-        $filename = uniqid() . '_' . $file->getClientOriginalName();
-
-        // Store the image in the 'public/images' directory
-        $file->storeAs('public/images', $filename);
-
-        // Return the path to be stored in the database
-        return 'images/' . $filename;
-    }
 
 
     public function like(Request $request, $postId)
     {
         try {
-            // Find the post by ID
             $post = Post::findOrFail($postId);
 
-            // Get the authenticated user's client relationship
             $client = Auth::user()->client;
 
-            // Check if the client has already liked the post
             $isLiked = $client->likedPosts()->where('post_id', $postId)->exists();
 
             if ($isLiked) {
-                // Unlike the post
                 $client->likedPosts()->detach($postId);
                 $message = 'Post unliked successfully.';
             } else {
-                // Like the post
                 $client->likedPosts()->attach($postId);
                 $message = 'Post liked successfully.';
             }
 
-            // Get updated likes count
             $likesCount = $post->likedByClients()->count();
 
-            // Return JSON response with success message and updated likes count
             return response()->json(['message' => $message, 'likes_count' => $likesCount], 200);
         } catch (\Exception $e) {
-            // Handle any exceptions (e.g., post not found)
             return response()->json(['error' => 'Failed to process like action.'], 500);
         }
     }
-
-
     public function save(Request $request, $postId)
     {
         try {
@@ -148,10 +126,8 @@ class PostController extends Controller
             return redirect()->back()->with('error', 'You are not authorized to delete this post.');
         }
 
-        // Delete the post
         $post->delete();
 
-        // Delete associated images
         $post->image()->delete();
 
         return redirect()->back()->with('success', 'Post deleted successfully.');

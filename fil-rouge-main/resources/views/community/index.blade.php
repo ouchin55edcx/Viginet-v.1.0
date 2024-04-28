@@ -131,7 +131,7 @@
 
                             if (!saveButton) {
                                 console.error('Save button not found for postId:', postId);
-                                return; // Exit function if saveButton is not found
+                                return;
                             }
 
                             fetch(`/posts/${postId}/save`, {
@@ -150,7 +150,6 @@
                                 .then(data => {
                                     console.log('Toggle save response:', data);
 
-                                    // Check the response message and update button text accordingly
                                     if (data.message === 'Post saved successfully.') {
                                         saveButton.textContent = 'UnSave';
                                     } else if (data.message === 'Post unsaved successfully.') {
@@ -168,7 +167,7 @@
 
                 </div>
             </div>
-            <!-- Assuming you have a parent container (e.g., a <div>) to wrap the comments -->
+
             <div class="mt-4">
                 @foreach ($post->comments as $comment)
                     <div class="bg-white p-4 mb-4 rounded-lg shadow-md">
@@ -218,53 +217,6 @@
     <!-- /Middle -->
 
 
-
-
-
-
-    <script>
-        // Burger menus
-        document.addEventListener('DOMContentLoaded', function () {
-            // open
-            const burger = document.querySelectorAll('.navbar-burger');
-            const menu = document.querySelectorAll('.navbar-menu');
-
-            if (burger.length && menu.length) {
-                for (var i = 0; i < burger.length; i++) {
-                    burger[i].addEventListener('click', function () {
-                        for (var j = 0; j < menu.length; j++) {
-                            menu[j].classList.toggle('hidden');
-                        }
-                    });
-                }
-            }
-
-            // close
-            const close = document.querySelectorAll('.navbar-close');
-            const backdrop = document.querySelectorAll('.navbar-backdrop');
-
-            if (close.length) {
-                for (var i = 0; i < close.length; i++) {
-                    close[i].addEventListener('click', function () {
-                        for (var j = 0; j < menu.length; j++) {
-                            menu[j].classList.toggle('hidden');
-                        }
-                    });
-                }
-            }
-
-            if (backdrop.length) {
-                for (var i = 0; i < backdrop.length; i++) {
-                    backdrop[i].addEventListener('click', function () {
-                        for (var j = 0; j < menu.length; j++) {
-                            menu[j].classList.toggle('hidden');
-                        }
-                    });
-                }
-            }
-        });
-    </script>
-
     {{--    like --}}
     <script>
         function toggleLike(postId) {
@@ -286,25 +238,99 @@
                 .catch(error => console.error(error));
         }
     </script>
+
     <script>
-        // Function to show the popup
         function showPopup() {
             document.getElementById('answerPopup').classList.remove('hidden');
         }
 
-        // Function to hide the popup
         function hidePopup() {
             document.getElementById('answerPopup').classList.add('hidden');
         }
 
-        // Event listener for the "Answer" button
         document.getElementById('answerButton').addEventListener('click', function () {
             showPopup();
         });
 
-        // Event listener for the "Close" button
         document.getElementById('closePopup').addEventListener('click', function () {
             hidePopup();
         });
     </script>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+
+        searchInput.addEventListener('input', function() {
+            const searchQuery = this.value.trim();
+
+            if (searchQuery.length > 0) {
+                searchPosts(searchQuery);
+            } else {
+                searchResults.innerHTML = '';
+            }
+        });
+
+        async function searchPosts(query) {
+            try {
+                const response = await fetch(`/postSearch?query=${encodeURIComponent(query)}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch search results');
+                }
+
+                const posts = await response.json();
+                displaySearchResults(posts);
+            } catch (error) {
+                console.error('Error fetching search results:', error);
+                searchResults.innerHTML = '<p>Failed to fetch search results. Please try again later.</p>';
+            }
+        }
+
+        function displaySearchResults(posts) {
+            let html = '';
+
+            if (posts.length > 0) {
+                posts.forEach(post => {
+                    html += `
+                    <!-- User Post -->
+                    <div class="border max-w-screen-md bg-white mt-6 p-4">
+                        <div class="flex items-center justify-between">
+                            <div class="gap-3.5 flex items-center">
+                                <img src="storage/images/v56_47.png" class="object-cover bg-yellow-500 rounded-full w-10 h-10"/>
+                                <div class="flex flex-col">
+                                    <time datetime="${post.created_at}" class="text-gray-400 text-xs">${formatDate(post.created_at)}</time>
+                                </div>
+                            </div>
+                            <div class="bg-gray-100 rounded-full h-3.5 flex items-center justify-center">
+                                <!-- Icon for actions -->
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="34px" fill="#92929D">
+                                    <path d="M0 0h24v24H0V0z" fill="none"/>
+                                    <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2 2-2-.9-2-2-2z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="whitespace-pre-wrap mt-7 font-bold"># Info</div>
+                        <div class="whitespace-pre-wrap mt-7 font-medium">${post.title}</div>
+                        <div class="mt-4">
+                            <p>${post.content}</p>
+                        </div>
+                    </div>
+                `;
+                });
+            } else {
+                html = '<p>No posts found.</p>';
+            }
+
+            searchResults.innerHTML = html;
+        }
+
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', options);
+        }
+    </script>
+
+
+
 @endsection

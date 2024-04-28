@@ -136,7 +136,6 @@
 
 
                 {{-- Courses --}}
-
                 @foreach ($lessons as $lesson)
                     <div class="bg-white rounded-lg shadow-md overflow-hidden mb-4">
                         <div class="flex items-center">
@@ -145,7 +144,6 @@
                                     <img class="h-20 w-20 object-cover" src="{{ asset('storage/' . $lesson->image_path) }}"
                                          alt="{{ $lesson->lesson_title }}">
                                 </a>
-
                             </div>
                             <div class="flex-1 px-4 py-2">
                                 <h3 class="text-lg font-semibold text-gray-800">{{ $lesson->lesson_title }}</h3>
@@ -178,22 +176,19 @@
 
                 {{-- Complainte --}}
                 <h1 class="text-center text-2xl font-bold mb-4">My Complaints</h1>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     @foreach ($complaints as $complaint)
                         <div class="bg-white rounded-lg shadow-md overflow-hidden">
                             <div class="px-6 py-4">
                                 <div class="flex items-center justify-between">
                                     <div>
-                                        <h2 class="text-lg font-semibold text-gray-800">Complaint
-                                            ID: {{ $complaint->id }}</h2>
+                                        <h2 class="text-lg font-semibold text-gray-800">Complaint ID: {{ $complaint->id }}</h2>
                                         <p class="text-sm text-gray-600">Status: {{ ucfirst($complaint->status) }}</p>
                                     </div>
                                     <div class="text-gray-600">
-                                    <span
-                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-{{ $complaint->status === 'approved' ? 'green-100 text-green-800' : 'red-100 text-red-800' }}">
-                                        {{ $complaint->status }}
-                                    </span>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-{{ $complaint->status === 'approved' ? 'green-100 text-green-800' : 'red-100 text-red-800' }}">
+                            {{ $complaint->status }}
+                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -203,19 +198,23 @@
                                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ strlen($complaint->description) > 50 ? substr($complaint->description, 0, 50) . '...' : $complaint->description }}</dd>
                                 </div>
                             </div>
-                            <div class="px-6 py-4">
+                            <div class="px-6 py-4 flex justify-between">
                                 @if ($complaint->report->isNotEmpty())
-                                    <a href="#"
-                                       onclick="downloadPDF({{ $complaint->report->first()->id }}); return false;"
-                                       class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <a href="#" onclick="downloadPDF({{ $complaint->report->first()->id }}); return false;" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         Download Report
                                     </a>
                                 @endif
+                                <form action="{{ route('complaints.destroy', $complaint->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                        Cancel
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     @endforeach
                 </div>
-
 
                 <div class="flex-1 bg-white rounded-lg shadow-xl p-8 mt-8">
                     <div class="flex  justify-between border-b-2 border-gray-700">

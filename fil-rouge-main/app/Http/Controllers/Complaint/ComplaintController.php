@@ -6,13 +6,13 @@ namespace App\Http\Controllers\Complaint;
 
 use App\Http\Controllers\Controller;
 use App\Models\Complaint;
-use App\Traits\ImageUploadTrait; // Import the ImageUploadTrait
+use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ComplaintController extends Controller
 {
-    use ImageUploadTrait; // Use the ImageUploadTrait
+    use ImageUploadTrait;
 
     public function index()
     {
@@ -41,10 +41,8 @@ class ComplaintController extends Controller
             $complaint->is_nonymous = 1;
         }
 
-        // Save the complaint to the database
         $complaint->save();
 
-        // Handle file uploads
         if ($request->hasFile('image')) {
             foreach ($request->file('image') as $file) {
                 $imagePath = $this->storeImage($file);
@@ -52,6 +50,17 @@ class ComplaintController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', 'Complaint submitted successfully!');
+        return redirect()->route('client.index')->with('success', 'Complaint submitted successfully!');
+    }
+
+
+    public function destroy(Complaint $complaint)
+    {
+        $complaint->delete();
+
+        $complaint->image()->delete();
+
+
+        return redirect()->back()->with('success', 'Complaint deleted successfully!');
     }
 }
