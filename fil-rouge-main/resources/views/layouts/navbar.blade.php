@@ -148,10 +148,10 @@
                         href="{{route('search.index')}}">Search</a>
 
                     @auth
-                        <form  method="POST" action="#">
+                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            @method('DELETE')
-                            <button type="submit" class="block lg:hideen py-2 px-6 lg:ml-3 border-2 border-yellow-500 hover:bg-yellow-600 hover:text-white text-sm text-black font-bold rounded-xl transition duration-200 cursor-pointer">
+                            @method('POST')
+                            <button type="submit" class="hidden lg:inline-block py-2 px-6 lg:ml-3 border-2 border-yellow-500 hover:bg-yellow-600 hover:text-white text-sm text-white  font-bold rounded-xl transition duration-200 cursor-pointer">
                                 Logout
                             </button>
                         </form>
