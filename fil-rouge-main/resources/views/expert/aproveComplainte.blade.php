@@ -8,25 +8,16 @@
 </head>
 
 <body>
-
 <!-- component -->
 <div class="h-screen w-full flex overflow-hidden select-none">
-
     <nav class="w-24 flex flex-col items-center bg-white dark:bg-gray-800 py-4">
         <!-- Left side NavBar -->
 
         <div>
             <!-- App Logo -->
 
-            <svg
-                class="h-8 w-8 fill-current text-blue-600 dark:text-blue-300"
-                viewBox="0 0 24 24">
-                <path
-                    d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3m6.82
-					6L12 12.72 5.18 9 12 5.28 18.82 9M17 16l-5 2.72L7 16v-3.73L12
-					15l5-2.73V16z"></path>
-            </svg>
-
+<a>            <img src="/storage/images/logo.png" alt="viginet" class="w-8 h-8">
+</a>
         </div>
 
         <ul class="mt-2 text-gray-700 dark:text-gray-400 capitalize">
@@ -65,67 +56,16 @@
             <li
                 class="mt-3 p-2 hover:text-blue-600 dark-hover:text-blue-300
 				rounded-lg">
-                <a
-                    href="#"
-                    class=" flex flex-col items-center">
-                    <svg class="fill-current h-5 w-5" viewBox="0 0 24 24">
-                        <path
-                            d="M21 18v1a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0
-							012-2h14a2 2 0 012 2v1h-9a2 2 0 00-2 2v8a2 2 0 002
-							2m0-2h10V8H12m4 5.5a1.5 1.5 0 01-1.5-1.5 1.5 1.5 0
-							011.5-1.5 1.5 1.5 0 011.5 1.5 1.5 1.5 0 01-1.5 1.5z"></path>
-                    </svg>
-                    <span class="text-xs mt-2">earnings</span>
-                </a>
-
-            </li>
-
-            <li
-                class="mt-3 p-2 hover:text-blue-600 dark-hover:text-blue-300
-				rounded-lg">
-                <a href="#" class=" flex flex-col items-center">
-                    <svg class="fill-current h-5 w-5" viewBox="0 0 512 512">
-                        <path
-                            d="M505 442.7L405.3
-							343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7
-							44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208
-							208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7
-							17l99.7 99.7c9.4 9.4 24.6 9.4 33.9
-							0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7
-							0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128
-							57.2 128 128 0 70.7-57.2 128-128 128z"></path>
-                    </svg>
-                    <span class="text-xs mt-2">jobs</span>
-                </a>
-
-            </li>
-
-            <li
-                class="mt-3 p-2 hover:text-blue-600 dark-hover:text-blue-300
-				rounded-lg">
                 <a href="#" class=" flex flex-col items-center">
                     <svg class="fill-current h-5 w-5" viewBox="0 0 24 24">
                         <path
-                            d="M19 19H5V8h14m0-5h-1V1h-2v2H8V1H6v2H5a2 2 0 00-2
-							2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2m-2.47
-							8.06L15.47 10l-4.88 4.88-2.12-2.12-1.06 1.06L10.59
-							17l5.94-5.94z"></path>
+                            d="M23 3v-.5a2.5 2.5 0 00-5 0V3c-.55 0-1 .45-1 1v4c0
+							.55.45 1 1 1h5c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1m-1
+							0h-3v-.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5V3M6
+							11h9v2H6v-2m0-4h9v2H6V7m16 4v5c0 1.11-.89 2-2 2H6l-4
+							4V4a2 2 0 012-2h11v2H4v13.17L5.17 16H20v-5h2z"></path>
                     </svg>
-                    <span class="text-xs mt-2">schedule</span>
-                </a>
-
-            </li>
-
-            <li class="mt-3 p-2 hover:text-blue-600 rounded-lg">
-                <a
-                    href="#"
-                    class=" flex flex-col items-center">
-                    <svg class="fill-current h-5 w-5" viewBox="0 0 24 24">
-                        <path
-                            d="M17 10.5V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0
-							001 1h12a1 1 0 001-1v-3.5l4 4v-11l-4 4z"></path>
-                    </svg>
-                    <span class="text-xs mt-2">lesson</span>
+                    <span class="text-xs mt-2">tools</span>
                 </a>
 
             </li>
@@ -230,7 +170,11 @@
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Attachment</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                <img src="{{ asset($complaint['image'][0]['path']) }}" alt="Complaint Attachment" class="max-w-full h-auto">
+                                @if (isset($complaint['image'][0]['path']))
+                                    <img src="{{ asset('storage/' . $complaint['image'][0]['path']) }}" alt="Complaint Attachment" class="max-w-full h-auto">
+                                @else
+                                    <p>No attachment available</p>
+                                @endif
                             </dd>
                         </div>
                     @endif
@@ -244,34 +188,37 @@
         </div>
         <!-- Popup -->
         <div id="popup" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                <div class="bg-white w-[50vw] mx-auto shadow-md rounded-lg overflow-hidden">
-                    <div class="px-6 py-4">
-                        <h2 class="text-lg font-semibold text-gray-800">Write Report</h2>
+            <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <div class="bg-white w-full max-w-md mx-auto shadow-lg rounded-lg overflow-hidden relative">
+                    <!-- Modal Header -->
+                    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                        <h2 class="text-xl font-semibold text-gray-800">Write Report</h2>
+                        <button type="button" id="closePopupBtn" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-gray-200 rounded-full p-1 absolute top-4 right-4">
+                            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </button>
                     </div>
-                    <div class="border-t border-gray-200">
-                        <form action="{{ route('reports.store') }}" method="POST" class="px-6 py-4">
+                    <!-- Modal Content -->
+                    <div class="px-6 py-4">
+                        <form action="{{ route('reports.store') }}" method="POST" class="space-y-4">
                             @csrf
-
-                            <input type="hidden" name="complaint_id" value="{{ $complaint['id'] }}<">
-                            <div class="mb-4">
-                                <label for="summary" class="block text-sm font-medium text-gray-700">Summary</label>
-                                <textarea name="summary" id="summary" rows="2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                            <input type="hidden" name="complaint_id" value="{{ $complaint['id'] }}">
+                            <div class="flex flex-col">
+                                <label for="summary" class="text-sm font-medium text-gray-700 mb-1">Summary</label>
+                                <textarea name="summary" id="summary" rows="2" class="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
                             </div>
-                            <div class="mb-4">
-                                <label for="findings" class="block text-sm font-medium text-gray-700">Findings</label>
-                                <textarea name="findings" id="findings" rows="4" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                            <div class="flex flex-col">
+                                <label for="findings" class="text-sm font-medium text-gray-700 mb-1">Findings</label>
+                                <textarea name="findings" id="findings" rows="4" class="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
                             </div>
-                            <div class="mb-4">
-                                <label for="recommendations" class="block text-sm font-medium text-gray-700">Recommendations</label>
-                                <textarea name="recommendations" id="recommendations" rows="3" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                            <div class="flex flex-col">
+                                <label for="recommendations" class="text-sm font-medium text-gray-700 mb-1">Recommendations</label>
+                                <textarea name="recommendations" id="recommendations" rows="3" class="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
                             </div>
-                            <div class="flex justify-end">
-                                <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <div class="flex justify-end mt-4">
+                                <button type="submit" class="inline-flex items-center px-4 py-2 rounded-md bg-indigo-600 text-white font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                     Submit Report
-                                </button>
-                                <button type="button" id="closePopupBtn" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
-                                    Close
                                 </button>
                             </div>
                         </form>

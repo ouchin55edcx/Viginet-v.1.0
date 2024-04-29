@@ -16,14 +16,7 @@
         <div>
             <!-- App Logo -->
 
-            <svg
-                class="h-8 w-8 fill-current text-blue-600 dark:text-blue-300"
-                viewBox="0 0 24 24">
-                <path
-                    d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3m6.82
-					6L12 12.72 5.18 9 12 5.28 18.82 9M17 16l-5 2.72L7 16v-3.73L12
-					15l5-2.73V16z"></path>
-            </svg>
+            <img src="storage/images/logo.png" alt="viginet" class="w-8 h-8">
 
         </div>
 
@@ -153,7 +146,7 @@
                     class="flex items-center pt-1 pb-1 px-8 text-lg font-semibold
 					capitalize dark:text-gray-300">
                     <!-- Header -->
-                    <span>Dodays Complaint</span>
+                    <span>odaysT Complaint</span>
                     <button class="ml-2">
                         <svg class="h-5 w-5 fill-current" viewBox="0 0 256 512">
                             <path
@@ -166,72 +159,37 @@
                     </button>
                 </h3>
 
-                <div>
-                    <!-- List -->
+                <div class="complaint-list">
                     @foreach($aprovetComplaints as $complaint)
-                        <ul class="w-full pt-1 pb-2 px-3 overflow-y-auto">
-                            <li class="mt-2">
-                                <a
-                                    class="p-5 flex flex-col justify-between
-                                    bg-gray-100 dark:bg-gray-200 rounded-lg"
-                                    href="#">
-
-                                    <div
-                                        class="flex items-center justify-between
-                                        font-semibold capitalize dark:text-gray-700">
-                                        <!-- Top section -->
-
-                                        <span>{{$complaint->attack}}</span>
-
-                                        <div class="flex items-center">
-                                            <a href="{{route('aproveComplainte', ['id' => $complaint->id])}}">
-                                                <svg
-                                                    class="h-5 w-5 fill-current mr-1
-                                                text-gray-600"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M14 12l-4-4v3H2v2h8v3m12-4a10
-                                                    10 0 01-19.54 3h2.13a8 8 0
-                                                    100-6H2.46A10 10 0 0122 12z"></path>
-                                                </svg>
-                                            </a>
-                                        </div>
-
-                                    </div>
-                                    <p
-                                        class="text-sm font-medium leading-snug
-                                        text-gray-600 my-3">
-                                        <!-- Middle section -->
-                                        <span>{{ Illuminate\Support\Str::limit($complaint->description, 5) }}</span>
-                                    </p>
-                                    <div class="flex justify-between">
-                                        <!-- Bottom section -->
-                                        <div class="flex">
-                                            @if ($complaint->is_nonymous == 1)
-                                                <p class="text-lg font-bold">Anonymous</p>
-                                            @else
-                                                <p class="text-lg font-bold">{{ optional($complaint->user)->username }}</p>
-                                            @endif
-                                        </div>
-                                        <p
-                                            class="text-sm font-medium leading-snug
-                                            text-gray-600">
-                                            {{ $complaint->created_at->diffForHumans() }}
-                                        </p>
-                                    </div>
-
+                        <ul class="complaint-item rounded-lg overflow-hidden shadow-md">
+                            <li class="complaint-header p-4 flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <i class="complaint-icon mr-2 text-primary-500">
+                                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        </svg>
+                                    </i>
+                                    <span class="complaint-type text-lg font-semibold capitalize">{{ $complaint->attack }}</span>
+                                </div>
+                                <a href="{{ route('aproveComplainte', ['id' => $complaint->id]) }}" class="text-primary-500 hover:text-primary-700">
+                                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M9 12l2 2L19 4l-2-2-4 4z"></path>
+                                    </svg>
                                 </a>
                             </li>
+                            <li class="complaint-body p-4 bg-gray-100 dark:bg-gray-200 rounded-b-lg">  <p class="complaint-excerpt text-gray-600">{{ Illuminate\Support\Str::limit($complaint->description, 20) }}</p>
+                            </li>
+                            <li class="complaint-footer p-4 flex justify-between items-center text-gray-600">
+        <span class="reported-by">
+          @if ($complaint->is_nonymous == 1)
+                Anonymous
+            @else
+                {{ optional($complaint->user)->username }}
+            @endif
+        </span>
+                                <span class="reported-time">{{ $complaint->created_at->diffForHumans() }}</span>
+                                <button class="complaint-details-btn px-3 py-1 rounded-full bg-primary-500 text-white hover:bg-primary-700">Details</button> </li>
                         </ul>
                     @endforeach
-
-                    <a
-                        href="#"
-                        class="flex justify-center capitalize text-blue-500
-						dark:text-blue-200">
-                        <span>see all</span>
-                    </a>
-
                 </div>
 
             </div>
@@ -284,10 +242,6 @@
 
         </div>
 
-        <span class="mt-4 text-gray-600">Scrore</span>
-        <span class="mt-1 text-3xl font-semibold">120 point</span>
-
-
         <div class="mt-12 flex items-center">
             <!-- New Complaint -->
 
@@ -318,10 +272,6 @@
             </div>
         @endforeach
 
-
-        <div class="mt-4 flex justify-center capitalize text-blue-600">
-            <a href="#">see all</a>
-        </div>
 
     </aside>
 

@@ -129,6 +129,11 @@ Route::get('/postSearch', [\App\Http\Controllers\Community\PostController::class
 Route::get('/acceptance', [\App\Http\Controllers\Auth\AcceptanceController::class, 'index'])->name('acceptance');
 
 
+// routes/web.php
+
+Route::delete('/complaints/{id}', 'ComplaintController@destroy')->name('complaints.destroy');
+
+
 Route::get('/ban', function () {
     return view('auth.ban');
 })->name('ban.page');
