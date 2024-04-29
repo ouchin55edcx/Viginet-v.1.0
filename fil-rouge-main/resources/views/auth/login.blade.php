@@ -21,12 +21,12 @@
                 <div class="mb-4">
                     <label for="login" class="block text-sm font-medium text-gray-700">Username or Email</label>
                     <input type="text" id="login" name="login"
-                        class="mt-1 block w-full h-10 border-2 rounded-full shadow-sm hover:border-blue-500" required>
+                        class="p-2 mt-1 block w-full h-10 border-2 rounded-full shadow-sm hover:border-blue-500" required>
                 </div>
                 <div class="mb-4">
                     <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                     <input type="password" id="password" name="password"
-                        class="mt-1 block w-full h-10 border-2 rounded-full shadow-sm hover:border-blue-500" required>
+                        class="p-2 mt-1 block w-full h-10 border-2 rounded-full shadow-sm hover:border-blue-500" required>
                 </div>
                 <button type="submit"
                     class="border border-yellow-500 bg-yellow-500 text-white rounded-full px-4 py-2 mt-2 transition duration-500 ease select-none hover:bg-yellow-600 focus:outline-none focus:shadow-outline">

@@ -25,7 +25,7 @@ class AdminController extends Controller
         $ComplaintsCount = Complaint::count();
 
 
-        $clients = User::where('role','client')->with('client')->paginate(1);
+        $clients = User::where('role','client')->with('client')->paginate(5);
         //dd($clients);
 
         return view('admin.index', compact('categories', 'ClientsCount', 'LessonsCount', 'CategoriesCount', 'ComplaintsCount','clients'));

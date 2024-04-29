@@ -47,7 +47,7 @@ class AddCourseController extends Controller
             'imageable_type' => Lesson::class,
         ]);
 
-        return redirect()->back()->with('success', 'Course created successfully!');
+        return redirect()->route('coursesManager.index')->with('success', 'Course created successfully!');
     }
     private function storeImage($image)
     {

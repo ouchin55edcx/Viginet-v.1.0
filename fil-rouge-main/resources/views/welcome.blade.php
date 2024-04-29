@@ -43,7 +43,7 @@
                                             </svg>
                                             <span class="w-fit block mx-auto text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-br from-blue-300 to-pink-600 dark:from-blue-400 dark:to-pink-400">100%</span>
                                         </div>
-                                        <h2 class="mt-6 text-center font-semibold text-gray-950 dark:text-white text-3xl">Customizable</h2>
+                                        <h2 class="mt-6 text-center font-semibold text-gray-950 dark:text-white text-3xl">Security</h2>
                                     </div>
                                 </div>
 
@@ -68,7 +68,7 @@
                                             </svg>
                                         </div>
                                         <div class="mt-6 text-center relative z-10 space-y-2">
-                                            <h2 class="text-lg font-medium text-gray-800 transition group-hover:text-purple-950 dark:text-white">: Learn Cybersecurity with Our Online Courses</h2>
+                                            <h2 class="text-lg font-medium text-gray-800 transition group-hover:text-purple-950 dark:text-white">Learn Cybersecurity with Our Online Courses</h2>
                                             <p class="dark:text-gray-300 text-gray-700">Join our vibrant cybersecurity community to engage in discussions, share insights, and stay updated on the latest trends and challenges in cybersecurity.
                                                 Connect with professionals and learners passionate about cybersecurity</p>
                                         </div>
@@ -147,11 +147,11 @@
                                                         <path fill="currentColor" fill-rule="evenodd" d="M9.003 6.125a2.993 2.993 0 0 1 .175-1.143a8.507 8.507 0 0 0-5.031 4.766a8.5 8.5 0 0 0-.502 4.817a3 3 0 0 1 .902-.723a7.498 7.498 0 0 1 4.456-7.717m5.994 0a7.499 7.499 0 0 1 4.456 7.717a2.998 2.998 0 0 1 .902.723a8.5 8.5 0 0 0-5.533-9.583a3 3 0 0 1 .175 1.143m2.536 13.328a3.002 3.002 0 0 1-1.078-.42a7.501 7.501 0 0 1-8.91 0l-.107.065a3 3 0 0 1-.971.355a8.5 8.5 0 0 0 11.066 0" clip-rule="evenodd"></path>
                                                     </g>
                                                 </svg>
+                                            </div><div class="space-y-2">
+                                                <h2 class="text-lg font-medium text-gray-800 transition group-hover:text-purple-950 dark:text-white">Join Our Community</h2>
+                                                <p class="dark:text-gray-300 text-gray-700">Discover a welcoming space where you can ask questions, share insights, and engage with others. Dive into discussions, find answers, and connect with like-minded individuals. Together, let's build a supportive and informed community!</p>
                                             </div>
-                                            <div class="space-y-2">
-                                                <h2 class="text-lg font-medium text-gray-800 transition group-hover:text-purple-950 dark:text-white">Keep your loved ones safe</h2>
-                                                <p class="dark:text-gray-300 text-gray-700">Voluptate. magnam magni doloribus dolores voluptates a sapiente inventore nisi.</p>
-                                            </div>
+
                                         </div>
                                         <div class="mt-6 relative sm:-mr-[--card-padding] sm:-my-8 before:absolute before:w-px before:inset-0 before:mx-auto before:bg-gray-200 dark:before:bg-gray-800">
                                             <div class="relative space-y-6 py-6 flex flex-col justify-center h-full">
@@ -187,39 +187,6 @@
     </section>
     </section>
 
-    {{-- web site overview --}}
-    {{--  <section class="bg-[#223654] rounded-lg w-[92vw] h-auto md:h-[100vh] mx-auto">
-       <div class="container mx-auto">
-           <!-- Title Section -->
-           <div class="mb-8 text-center">
-               <h1 class="font-bold text-white text-5xl mt-8">About Our Website</h1>
-           </div>
-           <div class="flex flex-col md:flex-row justify-center items-start md:items-center md:justify-between relative overflow-hidden">
-               <!-- Navigation Links -->
-               <ul class="flex flex-col justify-center items-center ml-32 md:flex flex-col gap-8 text-white text-xl mb-8 md:mb-0 md:w-[20%]">
-                   <li class="md:text-center cursor-pointer" onclick="changeSlide(0)">
-                       <h2 class="border-b-4 border-transparent hover:border-yellow-500 transition-colors duration-300">Courses</h2>
-                   </li>
-                   <li class="md:text-center cursor-pointer" onclick="changeSlide(1)">
-                       <h2 class="border-b-4 border-transparent hover:border-yellow-500 transition-colors duration-300">Environment</h2>
-                   </li>
-                   <li class="md:text-center cursor-pointer" onclick="changeSlide(2)">
-                       <h2 class="border-b-4 border-transparent hover:border-yellow-500 transition-colors duration-300">Complaint</h2>
-                   </li>
-               </ul>
-               <!-- Image Slider -->
-               <div class="w-full md:w-[60%] h-auto md:h-[70vh] mx-auto my-auto rounded-lg overflow-hidden">
-                   <div id="imageSlider" class="flex transition-transform duration-500 ease-in-out">
-                       <img src="storage/images/about1.png" alt="" class="w-full h-auto md:w-full md:h-[70vh]">
-                       <img src="storage/images/about2.png" alt="" class="w-full h-auto md:w-full md:h-[70vh]">
-                       <img src="storage/images/about1.png" alt="" class="w-full h-auto md:w-full md:h-[70vh]">
-                   </div>
-               </div>
-           </div>
-       </div>
-   </section> --}}
-    {{-- comments  --}}
-
     <section class="px-6 py-4 sm:px-6 lg:px-8">
         <div class="container mx-auto">
             <!-- Title Section -->
@@ -235,19 +202,11 @@
                                 <svg class="w-8 h-8 text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12 2.25A9.75 9.75 0 002.25 12a9.75 9.75 0 0019.5 0A9.75 9.75 0 0012 2.25zM12 18a6 6 0 110-12 6 6 0 010 12z" />
                                 </svg>
-                                <span class="text-gray-600 text-sm">Bob</span> <!-- Change the name here -->
+                                <span class="text-gray-600 text-sm">Alice</span> <!-- Updated name -->
                             </div>
-                            <p class="text-gray-800 font-semibold mb-2">Reported Security Incident</p> <!-- Change the title here -->
-                            <p class="text-gray-600 text-sm">"Encountered a security breach. Let's work together to enhance our defenses!"</p> <!-- Change the message here -->
-                            <div class="flex items-center mt-2">
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400">&#9679;</span>
-                            </div>
+                            <p class="text-gray-800 font-semibold mb-2">Great Platform for Cybersecurity Discussions</p> <!-- Updated title -->
+                            <p class="text-gray-600 text-sm">"VigiNet provides an excellent platform for discussing cybersecurity topics, sharing knowledge, and collaborating with experts. It's an essential resource for staying informed and prepared!"</p> <!-- Updated message -->
                         </div>
-
 
                         <!-- Review 2 -->
                         <div class="bg-white rounded-lg shadow-md p-4">
@@ -255,19 +214,11 @@
                                 <svg class="w-8 h-8 text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12 2.25A9.75 9.75 0 002.25 12a9.75 9.75 0 0019.5 0A9.75 9.75 0 0012 2.25zM12 18a6 6 0 110-12 6 6 0 010 12z" />
                                 </svg>
-                                <span class="text-gray-600 text-sm">Bob</span> <!-- Change the name here -->
+                                <span class="text-gray-600 text-sm">Charlie</span> <!-- Updated name -->
                             </div>
-                            <p class="text-gray-800 font-semibold mb-2">Reported Security Incident</p> <!-- Change the title here -->
-                            <p class="text-gray-600 text-sm">"Encountered a security breach. Let's work together to enhance our defenses!"</p> <!-- Change the message here -->
-                            <div class="flex items-center mt-2">
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400">&#9679;</span>
-                            </div>
+                            <p class="text-gray-800 font-semibold mb-2">Interactive Learning Environment</p> <!-- Updated title -->
+                            <p class="text-gray-600 text-sm">"I love the educational quizzes and the latest cybersecurity updates on VigiNet. It's a valuable resource for both beginners and professionals in the field!"</p> <!-- Updated message -->
                         </div>
-
 
                         <!-- Review 3 -->
                         <div class="bg-white rounded-lg shadow-md p-4">
@@ -275,77 +226,11 @@
                                 <svg class="w-8 h-8 text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12 2.25A9.75 9.75 0 002.25 12a9.75 9.75 0 0019.5 0A9.75 9.75 0 0012 2.25zM12 18a6 6 0 110-12 6 6 0 010 12z" />
                                 </svg>
-                                <span class="text-gray-600 text-sm">Bob</span> <!-- Change the name here -->
+                                <span class="text-gray-600 text-sm">Eve</span> <!-- Updated name -->
                             </div>
-                            <p class="text-gray-800 font-semibold mb-2">Reported Security Incident</p> <!-- Change the title here -->
-                            <p class="text-gray-600 text-sm">"Encountered a security breach. Let's work together to enhance our defenses!"</p> <!-- Change the message here -->
-                            <div class="flex items-center mt-2">
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400">&#9679;</span>
-                            </div>
+                            <p class="text-gray-800 font-semibold mb-2">Timely Incident Response</p> <!-- Updated title -->
+                            <p class="text-gray-600 text-sm">"VigiNet helped us swiftly respond to a recent security incident. The platform's resources and expert network are invaluable for tackling cybersecurity challenges!"</p> <!-- Updated message -->
                         </div>
-
-
-                        <!-- Review 4 -->
-                        <div class="bg-white rounded-lg shadow-md p-4">
-                            <div class="flex items-center mb-2">
-                                <svg class="w-8 h-8 text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2.25A9.75 9.75 0 002.25 12a9.75 9.75 0 0019.5 0A9.75 9.75 0 0012 2.25zM12 18a6 6 0 110-12 6 6 0 010 12z" />
-                                </svg>
-                                <span class="text-gray-600 text-sm">Bob</span> <!-- Change the name here -->
-                            </div>
-                            <p class="text-gray-800 font-semibold mb-2">Reported Security Incident</p> <!-- Change the title here -->
-                            <p class="text-gray-600 text-sm">"Encountered a security breach. Let's work together to enhance our defenses!"</p> <!-- Change the message here -->
-                            <div class="flex items-center mt-2">
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400">&#9679;</span>
-                            </div>
-                        </div>
-
-                        <!-- Review 5 -->
-                        <div class="bg-white rounded-lg shadow-md p-4">
-                            <div class="flex items-center mb-2">
-                                <svg class="w-8 h-8 text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2.25A9.75 9.75 0 002.25 12a9.75 9.75 0 0019.5 0A9.75 9.75 0 0012 2.25zM12 18a6 6 0 110-12 6 6 0 010 12z" />
-                                </svg>
-                                <span class="text-gray-600 text-sm">Bob</span> <!-- Change the name here -->
-                            </div>
-                            <p class="text-gray-800 font-semibold mb-2">Reported Security Incident</p> <!-- Change the title here -->
-                            <p class="text-gray-600 text-sm">"Encountered a security breach. Let's work together to enhance our defenses!"</p> <!-- Change the message here -->
-                            <div class="flex items-center mt-2">
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400">&#9679;</span>
-                            </div>
-                        </div>
-
-                        <!-- Review 6 -->
-                        <div class="bg-white rounded-lg shadow-md p-4">
-                            <div class="flex items-center mb-2">
-                                <svg class="w-8 h-8 text-gray-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2.25A9.75 9.75 0 002.25 12a9.75 9.75 0 0019.5 0A9.75 9.75 0 0012 2.25zM12 18a6 6 0 110-12 6 6 0 010 12z" />
-                                </svg>
-                                <span class="text-gray-600 text-sm">Bob</span> <!-- Change the name here -->
-                            </div>
-                            <p class="text-gray-800 font-semibold mb-2">Reported Security Incident</p> <!-- Change the title here -->
-                            <p class="text-gray-600 text-sm">"Encountered a security breach. Let's work together to enhance our defenses!"</p> <!-- Change the message here -->
-                            <div class="flex items-center mt-2">
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400 mr-1">&#9679;</span>
-                                <span class="text-gray-400">&#9679;</span>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -355,165 +240,144 @@
 
     <!-- FAQ -->
     <div class="mx-14 bg-[#111b29] rounded-xl text-white py-8 lg:px-6 mb-8">
-        <h1 class="text-center lg:text-4xl text-3xl lg:leading-9 leading-7 text-white font-semibold">Website Review</h1>
+        <h1 class="text-center lg:text-4xl text-3xl lg:leading-9 leading-7 text-white font-semibold">Frequently Asked Questions</h1>
 
-            <div class="lg:w-8/12 w-full mx-auto">
-                <!-- Question 1 -->
-                <hr class="w-full lg:mt-10 md:mt-12 md:mb-8 my-8" />
-
-                <div class="w-full p-4 md:px-6 ">
-                    <div id="mainHeading" class="flex justify-between items-center w-full">
-                        <div class="">
-                            <p class="flex justify-center items-center "><span class="lg:mr-6 mr-4 lg:text-2xl md:text-xl text-lg leading-6 md:leading-5 lg:leading-4 font-semibold text-yellow-500 p-4">Q1.</span> How do i know if a product is available in boutiques?</p>
-                        </div>
-                        <button aria-label="toggler" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 p-4" data-menu>
-                            <img class="transform dark:hidden " src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2.svg" alt="toggler">
-                            <img class="transform dark:block hidden " src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2dark.svg" alt="toggler">
-                        </button>
+        <div class="lg:w-8/12 w-full mx-auto">
+            <!-- Question 1 -->
+            <hr class="w-full lg:mt-10 md:mt-12 md:mb-8 my-8" />
+            <div class="w-full p-4 md:px-6">
+                <div id="mainHeading" class="flex justify-between items-center w-full">
+                    <div class="">
+                        <p class="flex justify-center items-center"><span class="lg:mr-6 mr-4 lg:text-2xl md:text-xl text-lg leading-6 md:leading-5 lg:leading-4 font-semibold text-yellow-500 p-4">Q1.</span> What kind of cybersecurity incidents can I report on VigiNet?</p>
                     </div>
-                    <div id="menu" class="hidden mt-6 w-full">
-                        <p class="text-base leading-6 text-gray-300 font-normal xs:p-4">Remember you can query the status of your orders any time in My orders in the My account section. if you are not resigered at Mango.com, you can access dierectly in the Orders section. In this cause, you will have enter your e-mail address and order number.</p>
-                    </div>
+                    <button aria-label="toggler" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 p-4" data-menu>
+                        <img class="transform dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2.svg" alt="toggler">
+                        <img class="transform dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2dark.svg" alt="toggler">
+                    </button>
                 </div>
-
-                <!-- Question 2 -->
-
-                <hr class="w-full lg:mt-10 my-8" />
-
-                <div class="w-full p-4 md:px-6 ">
-                    <div id="mainHeading" class="flex justify-between items-center w-full">
-                        <div class="">
-                            <p class="flex justify-center items-center "><span class="lg:mr-6 mr-4 lg:text-2xl md:text-xl text-lg leading-6 md:leading-5 lg:leading-4 font-semibold text-yellow-500 p-4">Q1.</span> How do i know if a product is available in boutiques?</p>
-                        </div>
-                        <button aria-label="toggler" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 p-4" data-menu>
-                            <img class="transform dark:hidden " src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2.svg" alt="toggler">
-                            <img class="transform dark:block hidden " src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2dark.svg" alt="toggler">
-                        </button>
-                    </div>
-                    <div id="menu" class="hidden mt-6 w-full">
-                        <p class="text-base leading-6 text-gray-300 font-normal xs:p-4">Remember you can query the status of your orders any time in My orders in the My account section. if you are not resigered at Mango.com, you can access dierectly in the Orders section. In this cause, you will have enter your e-mail address and order number.</p>
-                    </div>
+                <div id="menu" class="hidden mt-6 w-full">
+                    <p class="text-base leading-6 text-gray-300 font-normal xs:p-4">You can report various cybersecurity incidents on VigiNet, including phishing attempts, malware infections, data breaches, and suspicious activities affecting your online security.</p>
                 </div>
-
-                <!-- Question 3 -->
-
-                <hr class="w-full lg:mt-10 my-8" />
-
-                <div class="w-full p-4 md:px-6 ">
-                    <div id="mainHeading" class="flex justify-between items-center w-full">
-                        <div class="">
-                            <p class="flex justify-center items-center "><span class="lg:mr-6 mr-4 lg:text-2xl md:text-xl text-lg leading-6 md:leading-5 lg:leading-4 font-semibold text-yellow-500 p-4">Q1.</span> How do i know if a product is available in boutiques?</p>
-                        </div>
-                        <button aria-label="toggler" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 p-4" data-menu>
-                            <img class="transform dark:hidden " src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2.svg" alt="toggler">
-                            <img class="transform dark:block hidden " src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2dark.svg" alt="toggler">
-                        </button>
-                    </div>
-                    <div id="menu" class="hidden mt-6 w-full">
-                        <p class="text-base leading-6 text-gray-300 font-normal xs:p-4">Remember you can query the status of your orders any time in My orders in the My account section. if you are not resigered at Mango.com, you can access dierectly in the Orders section. In this cause, you will have enter your e-mail address and order number.</p>
-                    </div>
-                </div>
-
-                <!-- Question 4 -->
-
-                <hr class="w-full lg:mt-10 my-8" />
-
-                <div class="w-full p-4 md:px-6 ">
-                    <div id="mainHeading" class="flex justify-between items-center w-full">
-                        <div class="">
-                            <p class="flex justify-center items-center "><span class="lg:mr-6 mr-4 lg:text-2xl md:text-xl text-lg leading-6 md:leading-5 lg:leading-4 font-semibold text-yellow-500 p-4">Q1.</span> How do i know if a product is available in boutiques?</p>
-                        </div>
-                        <button aria-label="toggler" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 p-4" data-menu>
-                            <img class="transform dark:hidden " src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2.svg" alt="toggler">
-                            <img class="transform dark:block hidden " src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2dark.svg" alt="toggler">
-                        </button>
-                    </div>
-                    <div id="menu" class="hidden mt-6 w-full">
-                        <p class="text-base leading-6 text-gray-300 font-normal xs:p-4">Remember you can query the status of your orders any time in My orders in the My account section. if you are not resigered at Mango.com, you can access dierectly in the Orders section. In this cause, you will have enter your e-mail address and order number.</p>
-                    </div>
-                </div>
-
-                <!-- Question 5 -->
-
-                <hr class="w-full lg:mt-10 my-8" />
-
-                <div class="w-full p-4 md:px-6 ">
-                    <div id="mainHeading" class="flex justify-between items-center w-full">
-                        <div class="">
-                            <p class="flex justify-center items-center "><span class="lg:mr-6 mr-4 lg:text-2xl md:text-xl text-lg leading-6 md:leading-5 lg:leading-4 font-semibold text-yellow-500 p-4">Q1.</span> How do i know if a product is available in boutiques?</p>
-                        </div>
-                        <button aria-label="toggler" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 p-4" data-menu>
-                            <img class="transform dark:hidden " src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2.svg" alt="toggler">
-                            <img class="transform dark:block hidden " src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2dark.svg" alt="toggler">
-                        </button>
-                    </div>
-                    <div id="menu" class="hidden mt-6 w-full">
-                        <p class="text-base leading-6 text-gray-300 font-normal xs:p-4">Remember you can query the status of your orders any time in My orders in the My account section. if you are not resigered at Mango.com, you can access dierectly in the Orders section. In this cause, you will have enter your e-mail address and order number.</p>
-                    </div>
-                </div>
-
-                <hr class="w-full lg:mt-10 my-8" />
             </div>
 
+            <!-- Question 2 -->
+            <hr class="w-full lg:mt-10 my-8" />
+            <div class="w-full p-4 md:px-6">
+                <div id="mainHeading" class="flex justify-between items-center w-full">
+                    <div class="">
+                        <p class="flex justify-center items-center"><span class="lg:mr-6 mr-4 lg:text-2xl md:text-xl text-lg leading-6 md:leading-5 lg:leading-4 font-semibold text-yellow-500 p-4">Q2.</span> How can I collaborate with cybersecurity experts on VigiNet?</p>
+                    </div>
+                    <button aria-label="toggler" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 p-4" data-menu>
+                        <img class="transform dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2.svg" alt="toggler">
+                        <img class="transform dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2dark.svg" alt="toggler">
+                    </button>
+                </div>
+                <div id="menu" class="hidden mt-6 w-full">
+                    <p class="text-base leading-6 text-gray-300 font-normal xs:p-4">You can engage with cybersecurity experts by participating in discussions, asking questions, and seeking advice in the VigiNet community. Experts actively contribute to knowledge sharing and incident response.</p>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <hr class="w-full lg:mt-10 my-8" />
+            <div class="w-full p-4 md:px-6">
+                <div id="mainHeading" class="flex justify-between items-center w-full">
+                    <div class="">
+                        <p class="flex justify-center items-center"><span class="lg:mr-6 mr-4 lg:text-2xl md:text-xl text-lg leading-6 md:leading-5 lg:leading-4 font-semibold text-yellow-500 p-4">Q3.</span> How can I stay updated with the latest cybersecurity news on VigiNet?</p>
+                    </div>
+                    <button aria-label="toggler" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 p-4" data-menu>
+                        <img class="transform dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2.svg" alt="toggler">
+                        <img class="transform dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2dark.svg" alt="toggler">
+                    </button>
+                </div>
+                <div id="menu" class="hidden mt-6 w-full">
+                    <p class="text-base leading-6 text-gray-300 font-normal xs:p-4">You can stay informed about the latest cybersecurity trends and news by accessing the news section on VigiNet. We regularly update articles and announcements to keep our community informed.</p>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <hr class="w-full lg:mt-10 my-8" />
+            <div class="w-full p-4 md:px-6">
+                <div id="mainHeading" class="flex justify-between items-center w-full">
+                    <div class="">
+                        <p class="flex justify-center items-center"><span class="lg:mr-6 mr-4 lg:text-2xl md:text-xl text-lg leading-6 md:leading-5 lg:leading-4 font-semibold text-yellow-500 p-4">Q4.</span> How can I contribute to improving cybersecurity awareness on VigiNet?</p>
+                    </div>
+                    <button aria-label="toggler" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 p-4" data-menu>
+                        <img class="transform dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2.svg" alt="toggler">
+                        <img class="transform dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2dark.svg" alt="toggler">
+                    </button>
+                </div>
+                <div id="menu" class="hidden mt-6 w-full">
+                    <p class="text-base leading-6 text-gray-300 font-normal xs:p-4">You can contribute to improving cybersecurity awareness by sharing your knowledge, reporting incidents, and participating actively in discussions. Your engagement helps strengthen our community's security posture.</p>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <hr class="w-full lg:mt-10 my-8" />
+            <div class="w-full p-4 md:px-6">
+                <div id="mainHeading" class="flex justify-between items-center w-full">
+                    <div class="">
+                        <p class="flex justify-center items-center"><span class="lg:mr-6 mr-4 lg:text-2xl md:text-xl text-lg leading-6 md:leading-5 lg:leading-4 font-semibold text-yellow-500 p-4">Q5.</span> How can I report a cybersecurity incident anonymously on VigiNet?</p>
+                    </div>
+                    <button aria-label="toggler" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 p-4" data-menu>
+                        <img class="transform dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2.svg" alt="toggler">
+                        <img class="transform dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-8-svg2dark.svg" alt="toggler">
+                    </button>
+                </div>
+                <div id="menu" class="hidden mt-6 w-full">
+                    <p class="text-base leading-6 text-gray-300 font-normal xs:p-4">You can report a cybersecurity incident anonymously by using our secure incident reporting form. We prioritize privacy and confidentiality to encourage reporting without hesitation.</p>
+                </div>
+            </div>
+
+            <hr class="w-full lg:mt-10 my-8" />
         </div>
+    </div>
     </div>
 
 
 
-    <footer>
-        <div class="bg-black py-4 text-gray-400">
-            <div class="container px-4 mx-auto">
-                <h1 class="font-bold text-white text-4xl p-8 text-center">Ready to start learning cyber security?</h1>
-                <div class="-mx-4 flex flex-wrap justify-between">
-                    <div class="px-4 my-4 w-full xl:w-1/5">
-                        <a href="/" class="block w-52 ">
-                            <img src="storageimages/logo.png" alt="">
-                        </a>
-                        <p class="text-justify">
-                            Copyright TryHackMe 2018-2023 <br>
-                            128 City Road, London, EC1V 2NX /p>
-                    </div>
+    <footer class="bg-black py-8 text-gray-400">
+        <div class="container mx-auto px-4">
+            <h1 class="font-bold text-white text-4xl text-center mb-8">Ready to start learning cyber security?</h1>
 
-                    <div class="px-4 my-4 w-full sm:w-auto">
-                        <div>
-                            <h2 class="inline-block text-2xl pb-4 mb-4 border-b-4 border-blue-600">Company</h2>
-                        </div>
-                        <ul class="leading-8">
-                            <li><a href="#" class="hover:text-blue-400">About Us</a></li>
-                            <li><a href="#" class="hover:text-blue-400">Terms &amp; Conditions</a></li>
-                            <li><a href="#" class="hover:text-blue-400">Privacy Policy</a></li>
-                            <li><a href="#" class="hover:text-blue-400">Contact Us</a></li>
-                        </ul>
-                    </div>
-                    <div class="px-4 my-4 w-full sm:w-auto">
-                        <div>
-                            <h2 class="inline-block text-2xl pb-4 mb-4 border-b-4 border-blue-600">Company</h2>
-                        </div>
-                        <ul class="leading-8">
-                            <li><a href="#" class="hover:text-blue-400">About Us</a></li>
-                            <li><a href="#" class="hover:text-blue-400">Terms &amp; Conditions</a></li>
-                            <li><a href="#" class="hover:text-blue-400">Privacy Policy</a></li>
-                            <li><a href="#" class="hover:text-blue-400">Contact Us</a></li>
-                        </ul>
-                    </div>
-                    <div class="px-4 my-4 w-full sm:w-auto">
-                        <div>
-                            <h2 class="inline-block text-2xl pb-4 mb-4 border-b-4 border-blue-600">Blog</h2>
-                        </div>
-                        <ul class="leading-8">
-                            <li><a href="#" class="hover:text-blue-400">Getting Started With HTML and CSS</a>
-                            </li>
-                            <li><a href="#" class="hover:text-blue-400">What Is Flex And When to Use It?</a>
-                            </li>
-                            <li><a href="#" class="hover:text-blue-400">How TailwindCSS Can Help Your
-                                    Productivity?</a>
-                            </li>
-                            <li><a href="#" class="hover:text-blue-400">5 Tips to Make Responsive Website</a>
-                            </li>
-                            <li><a href="#" class="hover:text-blue-400">See More</a></li>
-                        </ul>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Company Links -->
+                <div class="px-4">
+                    <h2 class="text-2xl pb-4 mb-4 border-b-4 border-blue-600">Company</h2>
+                    <ul class="leading-8">
+                        <li><a href="#" class="hover:text-blue-400">About Us</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Terms & Conditions</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Contact Us</a></li>
+                    </ul>
                 </div>
+
+                <!-- Blog Links -->
+                <div class="px-4">
+                    <h2 class="text-2xl pb-4 mb-4 border-b-4 border-blue-600">Blog</h2>
+                    <ul class="leading-8">
+                        <li><a href="#" class="hover:text-blue-400">Getting Started With HTML and CSS</a></li>
+                        <li><a href="#" class="hover:text-blue-400">What Is Flex And When to Use It?</a></li>
+                        <li><a href="#" class="hover:text-blue-400">How TailwindCSS Can Help Your Productivity?</a></li>
+                        <li><a href="#" class="hover:text-blue-400">5 Tips to Make Responsive Websites</a></li>
+                        <li><a href="#" class="hover:text-blue-400">See More</a></li>
+                    </ul>
+                </div>
+
+                <!-- Useful Links -->
+                <div class="px-4">
+                    <h2 class="text-2xl pb-4 mb-4 border-b-4 border-blue-600">Useful Links</h2>
+                    <ul class="leading-8">
+                        <li><a href="#" class="hover:text-blue-400">Courses</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Community</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Complaint</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Search</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Profile</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <p>&copy; VigiNet 2024-2025</p>
             </div>
         </div>
     </footer>

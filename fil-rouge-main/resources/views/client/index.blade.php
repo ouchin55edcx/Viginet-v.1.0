@@ -20,7 +20,7 @@
                                 <img src="{{'storage/' . $userInfo->image->path }}"
                                      class="w-40 border-4 border-white rounded-full">
                             @else
-                                <img src="{{ asset('storage/images/v56_47.png') }}"
+                                <img src="{{ asset('storage/images/defaultImg.jpg') }}"
                                      class="w-40 border-4 border-white rounded-full">
                             @endif
                             <label for="image"

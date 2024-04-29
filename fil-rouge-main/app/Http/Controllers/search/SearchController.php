@@ -11,7 +11,6 @@ class SearchController extends Controller
     public function index()
     {
         $lessons = Lesson::with('image', 'category')->paginate(5);
-//        dd($lessons);
         return view('searsh.index', compact('lessons'));
     }
 

@@ -434,56 +434,47 @@
 
 
     <!-- SIDEBAR -->
-    <section id="sidebar">
-        <a href="#" class="brand">
-            <i class='bx bxs-smile'></i>
-            <span class="text">Admin</span>
-        </a>
-        <ul class="side-menu top">
+    <section id="sidebar" class="bg-yellow-500 text-white h-screen w-64 fixed top-0 left-0 overflow-y-auto overflow-x-hidden">
+        <!-- Brand logo and text -->
+
+        <!-- Side menu items -->
+        <ul class="side-menu mt-6">
+            <!-- Dashboard -->
             <li class="active">
-                <a href="{{route('admin.index')}}">
-                    <i class='bx bxs-dashboard'></i>
+                <a href="{{ route('admin.index') }}" class="flex items-center py-2 px-4 text-sm font-medium">
+                    <i class='bx bxs-dashboard text-lg mr-2'></i>
                     <span class="text">Dashboard</span>
                 </a>
             </li>
+
+            <!-- Courses Manager -->
             <li>
-                <a href="{{route('coursesManager.index')}}">
-                    <i class='bx bxs-shopping-bag-alt'></i>
+                <a href="{{ route('coursesManager.index') }}" class="flex items-center py-2 px-4 text-sm font-medium">
+                    <i class='bx bxs-shopping-bag-alt text-lg mr-2'></i>
                     <span class="text">Courses Manager</span>
                 </a>
             </li>
+
+            <!-- Categories Manager -->
             <li>
-                <a href="#">
-                    <i class='bx bxs-doughnut-chart'></i>
-                    <span class="text">Analytics</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bxs-message-dots'></i>
-                    <span class="text">Message</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('categoriesManager.index')}}">
-                    <i class='bx bxs-group'></i>
+                <a href="{{ route('categoriesManager.index') }}" class="flex items-center py-2 px-4 text-sm font-medium">
+                    <i class='bx bxs-group text-lg mr-2'></i>
                     <span class="text">Categories Manager</span>
                 </a>
             </li>
         </ul>
-        <ul class="side-menu">
-            <li>
-                <a href="#">
-                    <i class='bx bxs-cog'></i>
-                    <span class="text">Settings</span>
-                </a>
-            </li>
+
+        <!-- Logout button -->
+        <ul class="side-menu mt-auto">
             <li>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     @method('POST')
-                    <button type="submit" class="hidden lg:inline-block py-2 px-6 lg:ml-3 border-2 border-yellow-500 hover:bg-yellow-600 hover:text-white text-sm text-white  font-bold rounded-xl transition duration-200 cursor-pointer">
-                        Logout
+                    <button type="submit" class="flex items-center justify-center py-2 px-4 text-sm font-medium text-black">
+                        <svg class="fill-current h-5 w-5 mr-2" viewBox="0 0 24 24">
+                            <path fill="none" d="M0 0h24v24H0z"/>
+                            <path d="M5 22a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v3h-2V4H6v16h12v-2h2v3a1 1 0 0 1-1 1H5zm13-6v-3h-7v-2h7V8l5 4-5 4z"/>
+                        </svg>
                     </button>
                 </form>
             </li>
@@ -491,28 +482,20 @@
     </section>
     <!-- SIDEBAR -->
 
-
-
     <!-- CONTENT -->
     <section id="content">
         <!-- NAVBAR -->
-        <nav>
+        <nav class="flex justify-between " >
             <i class='bx bx-menu'></i>
-            <a href="#" class="nav-link">Categories</a>
-            <input type="checkbox" id="switch-mode" hidden>
-            <label for="switch-mode" class="switch-mode"></label>
-            <a href="#" class="notification">
-                <i class='bx bxs-bell'></i>
-                <span class="num">8</span>
-            </a>
-            <a href="#" class="profile">
-                <img src="img/people.png">
-            </a>
+            <div class=" flex justify-end">
+                <a href="#" class="nav-link">VigiNet Admin panel </a>
+                <a href="#" class="profile">
+                    <img src="storage/images/logo.png" class="w-8 h-8">
+                </a>
+            </div>
         </nav>
 
         @yield('content')
-
-
 
 
     </section>
@@ -520,21 +503,6 @@
 
 
     <script>
-        // const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
-
-        // allSideMenu.forEach(item => {
-        //     const li = item.parentElement;
-
-        //     item.addEventListener('click', function() {
-        //         allSideMenu.forEach(i => {
-        //             i.parentElement.classList.remove('active');
-        //         })
-        //         li.classList.add('active');
-        //     })
-        // });
-
-
-
 
         // TOGGLE SIDEBAR
         const menuBar = document.querySelector('#content nav .bx.bx-menu');
