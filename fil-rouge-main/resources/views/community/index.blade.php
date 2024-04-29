@@ -1,8 +1,6 @@
 @extends('layouts.header')
 
 @section('community')
-    <!-- User Post -->
-
 
     @foreach($posts as $post)
         <!-- User Post -->
@@ -167,18 +165,18 @@
 
                 </div>
             </div>
-
             <div class="mt-4">
                 @foreach ($post->comments as $comment)
-                    <div class="bg-white p-4 mb-4 rounded-lg shadow-md">
-                        <p class="text-gray-700">{{ $comment->content }}</p>
-                        <div class="flex items-center justify-between mt-2 text-sm text-gray-500">
-                            <span>Posted by: {{ $comment->user->username }}</span>
-                            <span>{{ $comment->created_at->diffForHumans() }}</span>
+                    <div class="bg-white rounded-lg shadow-md mb-4">
+                        <div class="flex items-center p-4 border-b border-gray-200">
+                            <p class="text-gray-700 font-medium">{{ $comment->user->username }}</p>
+                            <span class="text-gray-500 text-sm ml-auto">{{ $comment->created_at->diffForHumans() }}</span>
                         </div>
+                        <p class="px-4 py-3 text-gray-700">{{ $comment->content }}</p>
                     </div>
                 @endforeach
             </div>
+
             <div class="flex items-center justify-between gap-4 mt-4">
                 <form action="{{ route('comments.store', ['postId' => $post->id]) }}" method="POST">
                     @csrf
@@ -314,6 +312,10 @@
                         <div class="mt-4">
                             <p>${post.content}</p>
                         </div>
+                            <div class="mt-5 flex gap-2	 justify-center border-b pb-4 flex-wrap	">
+                                <img src="storage/{{$post->image->path}}"
+                                     class="bg-red-500 rounded-2xl w-1/3 object-cover h-96 flex-auto" alt="photo">
+                            </div>
                     </div>
                 `;
                 });

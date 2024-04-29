@@ -171,8 +171,6 @@
                     <div class="w-full">
                         <input type="text" id="searchInput" class="text-black placeholder-gray-500 border-2 border-black p-2 bg-[#EFEFEF] w-full rounded-full" placeholder="Search posts...">
                     </div>
-
-                    <div id="searchResults"></div>
                 </div>
                 <div class="flex justify-around  items-center mt-4">
 
@@ -207,7 +205,7 @@
                                 <!-- Icons -->
                                 <input type="file" name="image[]" multiple>
 
-                                <   !-- Buttons -->
+                                <!-- Buttons -->
                                 <div class="buttons flex">
                                     <button type="button" class="btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto" onclick="togglePopup('popup1')">Cancel</button>
                                     <button type="submit" class="btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500">Post</button>
@@ -243,6 +241,7 @@
                 <a href="{{ route('community.index') }}" class="text-gray-800 hover:text-blue-500 py-2 px-4 inline-block">Posts</a>
                 <a href="{{ route('asks.index') }}" class="text-gray-800 hover:text-blue-500 py-2 px-4 inline-block">Questions</a>
             </div>
+            <div id="searchResults"></div>
 
 
             <!-- /links -->
