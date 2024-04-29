@@ -128,3 +128,7 @@ Route::get('/postSearch', [\App\Http\Controllers\Community\PostController::class
 
 Route::get('/acceptance', [\App\Http\Controllers\Auth\AcceptanceController::class, 'index'])->name('acceptance');
 
+
+Route::get('/ban', function () {
+    return view('auth.ban');
+})->name('ban.page');

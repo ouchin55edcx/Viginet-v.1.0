@@ -24,6 +24,13 @@ class LoginController extends Controller
         if (Auth::attempt([$field => $credentials['login'], 'password' => $credentials['password']])) {
 
             $user = Auth::user();
+
+            // Check if the user is banned
+            if ($user->role === 'Client' && $user->client && $user->client->status === 'inactive') {
+                Auth::logout(); // Log out the user if banned
+                return redirect()->route('ban.page'); // Redirect to ban page
+            }
+
             switch ($user->role) {
                 case 'Client':
                     return redirect(RouteServiceProvider::CLIENT_HOME);
@@ -39,7 +46,9 @@ class LoginController extends Controller
                     break;
             }
         }
+
         return back()->withErrors([
             'login' => 'The provided credentials do not match our records.',
         ]);
-    }}
+    }
+}
